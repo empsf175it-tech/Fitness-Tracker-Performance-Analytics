@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseForge Dashboard — Elite Biometric Performance SaaS</title>
+  <meta name="description" content="Protected SaaS application for performance telemetry, workout tracking, macro sync, autonomic recovery, and coach client access control.">
+  <meta name="keywords" content="fitness dashboard, athlete analytics, workout tracking, macro tracking, HRV telemetry, coach client management">
+  <meta name="author" content="PulseForge Engineering">
+  <link rel="canonical" href="https://pulseforge.io/dashboard.html">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PulseForge Dashboard — Command Center">
+  <meta property="og:description" content="Protected SaaS application for performance telemetry, workout tracking, macro sync, and coach client access control.">
+  <meta property="og:image" content="assets/images/hero/hero-runner.jpg">
+  <meta property="og:url" content="https://pulseforge.io/dashboard.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PulseForge Dashboard — Command Center">
+  <meta name="twitter:description" content="Biometric performance telemetry, workout logs, and autonomic recovery.">
+  <meta name="twitter:image" content="assets/images/hero/hero-runner.jpg">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PulseForge Athlete Dashboard",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "All",
+    "description": "Biometric telemetry command center, workout logger, nutrition sync, and recovery analytics."
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <!-- Native Vanilla JS Chart Engine -->
+  <script src="assets/js/charts.js"></script>
+</head>
+<body class="dashboard-body">
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-follower"></div>
+
+  <div class="dashboard-layout">
+    <!-- ======================================================================
+         SIDEBAR NAVIGATION
+         ====================================================================== -->
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <a href="index.html" title="Back to Home">
+          <img src="assets/images/logo.png" alt="PulseForge Logo" width="160" height="40">
+        </a>
+      </div>
+
+      <nav class="dash-nav">
+        <a href="#overview" class="dash-nav-item active" data-tab="overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span class="nav-label">Overview</span>
+        </a>
+        <a href="#workouts" class="dash-nav-item" data-tab="workouts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 5v14M18 5v14M3 9v6M21 9v6M6 12h12"/></svg>
+          <span class="nav-label">Workouts</span>
+        </a>
+        <a href="#nutrition" class="dash-nav-item" data-tab="nutrition">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+          <span class="nav-label">Nutrition</span>
+        </a>
+        <a href="#recovery" class="dash-nav-item" data-tab="recovery">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <span class="nav-label">Recovery</span>
+        </a>
+        <a href="#reports" class="dash-nav-item" data-tab="reports">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="nav-label">Reports &amp; Export</span>
+        </a>
+        <a href="#clients" class="dash-nav-item" data-tab="clients" id="navItemClients">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <span class="nav-label">Clients &amp; Roster</span>
+        </a>
+        <a href="#settings" class="dash-nav-item" data-tab="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span class="nav-label">Settings</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar User Card & Logout -->
+      <div class="dash-sidebar-footer">
+        <div class="user-mini-card">
+          <img src="assets/images/avatars/athlete-elena.jpg" alt="User Avatar" class="user-mini-avatar" id="userSidebarAvatar">
+          <div class="user-mini-info">
+            <span class="user-mini-name" id="userSidebarName">Elena Rostova</span>
+            <span class="user-role-badge" id="userSidebarRole">CLIENT</span>
+          </div>
+        </div>
+        <button class="btn-logout-icon" id="btnLogout" title="Log Out of PulseForge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         MAIN CONTENT AREA
+         ====================================================================== -->
+    <div class="dash-main">
+      <!-- Topbar -->
+      <header class="dash-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" aria-label="Toggle Navigation Sidebar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="dash-search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Search biometrics, workouts, meals..." id="topSearchInput">
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm" id="btnOpenAddWorkoutModal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Log Workout
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btnOpenAddMealModal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Log Food
+          </button>
+
+          <div class="btn-icon-topbar" title="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notif-dot"></span>
+          </div>
+
+          <a href="#settings" class="dash-nav-item-link" style="text-decoration:none;">
+            <img src="assets/images/avatars/athlete-elena.jpg" alt="Avatar" id="topbarAvatar" style="width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--electric-lime); display:block;">
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Views (Tabs) -->
+      <div class="dash-content">
+        <!-- ------------------------------------------------------------------
+             TAB 1: OVERVIEW
+             ------------------------------------------------------------------ -->
+        <section class="dash-tab-pane active" id="tab-overview">
+          <div class="pane-header">
+            <div class="pane-title">
+              <h1 style="font-size:1.85rem; font-weight:800; color:var(--text-sand); margin-bottom:4px;">Biometric Telemetry Command Center</h1>
+              <p>Autonomous physical strain, nervous system readiness, and metabolic energy balance.</p>
+            </div>
+            <div class="pane-actions">
+              <span class="badge" style="background:#0b2a30; color:var(--electric-lime); padding:6px 14px; border-radius:9999px; font-size:0.8rem; font-weight:700;">● BIO-SENSORS SYNCED</span>
+            </div>
+          </div>
+
+          <!-- Top KPI Cards (Centered Icons & Text, 3D Tilt) -->
+          <div class="kpi-cards-grid">
+            <div class="kpi-card" data-tilt>
+              <div class="kpi-icon-wrap lime">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div class="kpi-val" id="kpiCalories">2,940</div>
+              <div class="kpi-lbl">Total Calories Burned</div>
+            </div>
+
+            <div class="kpi-card" data-tilt>
+              <div class="kpi-icon-wrap aqua">
+                <svg class="anim-heartbeat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div class="kpi-val" id="kpiHrv">88 ms</div>
+              <div class="kpi-lbl">Autonomic HRV (rMSSD)</div>
+            </div>
+
+            <div class="kpi-card" data-tilt>
+              <div class="kpi-icon-wrap violet">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="kpi-val" id="kpiReadiness">94%</div>
+              <div class="kpi-lbl">Readiness Score</div>
+            </div>
+
+            <div class="kpi-card" data-tilt>
+              <div class="kpi-icon-wrap coral">
+                <svg class="anim-dumbbell" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 5v14M18 5v14M3 9v6M21 9v6M6 12h12"/></svg>
+              </div>
+              <div class="kpi-val" id="kpiStrain">15.2</div>
+              <div class="kpi-lbl">Day Strain Index (0–21)</div>
+            </div>
+          </div>
+
+          <!-- Charts Grid -->
+          <div class="dash-charts-grid">
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <div>
+                  <h3 class="chart-card-title">Training Strain vs. Physiological Output</h3>
+                  <p style="font-size:0.85rem; color:var(--text-muted);">Real-time cardiovascular telemetry over the last 7 logged days.</p>
+                </div>
+              </div>
+              <div class="chart-container-rel">
+                <canvas id="chartPerformanceCanvas"></canvas>
+              </div>
+            </div>
+
+            <!-- Readiness Gauge Dial Widget -->
+            <div class="chart-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+              <h3 class="chart-card-title" style="margin-bottom:16px;">Morning Readiness Dial</h3>
+              <div style="position:relative; width:180px; height:180px; margin-bottom:12px;">
+                <svg viewBox="0 0 100 100" width="180" height="180" style="transform:rotate(-90deg);">
+                  <circle cx="50" cy="50" r="45" stroke="#071a1f" stroke-width="8" fill="none"/>
+                  <circle id="readinessDialRing" cx="50" cy="50" r="45" stroke="#2ef2c2" stroke-width="8" stroke-linecap="round" fill="none" stroke-dasharray="283" stroke-dashoffset="17" style="transition:stroke-dashoffset 1.2s ease;"/>
+                </svg>
+                <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                  <span id="readinessDialVal" style="font-family:var(--font-display); font-size:2.2rem; font-weight:800; color:var(--text-sand);">94%</span>
+                  <span style="font-size:0.75rem; text-transform:uppercase; color:var(--electric-lime); font-weight:700;">Optimal</span>
+                </div>
+              </div>
+              <p style="font-size:0.85rem; color:var(--text-muted); max-width:220px;">
+                Central nervous system fully regenerated. High-load stimuli recommended today.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ------------------------------------------------------------------
+             TAB 2: WORKOUTS LOG TABLE (Sort, Search, Add, Delete)
+             ------------------------------------------------------------------ -->
+        <section class="dash-tab-pane" id="tab-workouts">
+          <div class="pane-header">
+            <div class="pane-title">
+              <h2>Workouts &amp; Training Sessions</h2>
+              <p>Filter, sort, and log physical workload across strength, endurance, and recovery.</p>
+            </div>
+            <div class="pane-actions">
+              <button class="btn btn-primary btn-sm" onclick="document.getElementById('modalAddWorkout').classList.add('open')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                + Log Workout
+              </button>
+            </div>
+          </div>
+
+          <div class="dash-table-card">
+            <div class="table-toolbar">
+              <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                <input type="text" id="inputWorkoutSearch" class="table-search-input" placeholder="Search workout title...">
+                <select id="selectWorkoutCategory" class="table-filter-select">
+                  <option value="All">All Categories</option>
+                  <option value="Strength">Strength</option>
+                  <option value="Endurance">Endurance</option>
+                  <option value="HIIT">HIIT</option>
+                  <option value="Recovery">Recovery</option>
+                  <option value="Cardio">Cardio</option>
+                </select>
+              </div>
+              <span id="totalWorkoutsCount" style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">Loading...</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Session Title</th>
+                    <th>Category</th>
+                    <th>Duration</th>
+                    <th>Calories</th>
+                    <th>Strain</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="workoutsTableBody">
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ------------------------------------------------------------------
+             TAB 3: NUTRITION & HYDRATION
+             ------------------------------------------------------------------ -->
+        <section class="dash-tab-pane" id="tab-nutrition">
+          <div class="pane-header">
+            <div class="pane-title">
+              <h2>Daily Nutrition &amp; Macro Fueling</h2>
+              <p>Track macronutrient intake against dynamic athletic metabolic expenditure.</p>
+            </div>
+            <div class="pane-actions">
+              <button class="btn btn-primary btn-sm" onclick="document.getElementById('modalAddMeal').classList.add('open')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                + Log Food Item
+              </button>
+            </div>
+          </div>
+
+          <!-- Macro Cards Grid -->
+          <div class="kpi-cards-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 24px;">
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap lime"><span style="font-weight:800;">CAL</span></div>
+              <div class="kpi-val" id="nutriCaloriesVal" style="font-size:1.5rem;">2,140 / 2,600</div>
+              <div class="kpi-lbl">Calories Intake</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap lime"><span style="font-weight:800;">PRO</span></div>
+              <div class="kpi-val" id="nutriProteinVal" style="font-size:1.5rem;">182g / 190g</div>
+              <div class="kpi-lbl">Protein (Target 190g)</div>
+              <div style="width:100%; height:4px; background:#071a1f; border-radius:2px; margin-top:8px;">
+                <div id="barProtein" style="width:95%; height:100%; background:var(--electric-lime);"></div>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap aqua"><span style="font-weight:800;">CHO</span></div>
+              <div class="kpi-val" id="nutriCarbsVal" style="font-size:1.5rem;">240g / 260g</div>
+              <div class="kpi-lbl">Carbs (Target 260g)</div>
+              <div style="width:100%; height:4px; background:#071a1f; border-radius:2px; margin-top:8px;">
+                <div id="barCarbs" style="width:92%; height:100%; background:var(--recovery-aqua);"></div>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap coral"><span style="font-weight:800;">FAT</span></div>
+              <div class="kpi-val" id="nutriFatVal" style="font-size:1.5rem;">58g / 65g</div>
+              <div class="kpi-lbl">Fats (Target 65g)</div>
+              <div style="width:100%; height:4px; background:#071a1f; border-radius:2px; margin-top:8px;">
+                <div id="barFat" style="width:89%; height:100%; background:var(--heat-coral);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meals List & Hydration Card -->
+          <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px;">
+            <div class="dash-table-card">
+              <h3 style="font-size:1.2rem; margin-bottom:16px;">Today's Logged Meals</h3>
+              <div id="nutriMealsList">Loading nutrition entries...</div>
+            </div>
+
+            <!-- Hydration Widget -->
+            <div class="chart-card" style="text-align:center;">
+              <h3 class="chart-card-title">Hydration Intake</h3>
+              <div style="font-family:var(--font-display); font-size:2.4rem; font-weight:800; color:var(--recovery-aqua); margin:18px 0 6px;" id="nutriWaterVal">
+                3,250 mL
+              </div>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">Daily Target: 3,500 mL (92% reached)</p>
+              <div style="display:flex; justify-content:center; gap:12px;">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('Added +250 mL water', 'success');">+ 250 mL</button>
+                <button class="btn btn-outline btn-sm" onclick="showToast('Added +500 mL water', 'success');">+ 500 mL</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ------------------------------------------------------------------
+             TAB 4: RECOVERY & SLEEP
+             ------------------------------------------------------------------ -->
+        <section class="dash-tab-pane" id="tab-recovery">
+          <div class="pane-header">
+            <div class="pane-title">
+              <h2>Sleep Architecture &amp; Autonomic HRV</h2>
+              <p>Review restorative sleep cycles and 14-day neurocardiac recovery oscillations.</p>
+            </div>
+          </div>
+
+          <!-- Sleep stats -->
+          <div class="kpi-cards-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 24px;">
+            <div class="kpi-card">
+              <div class="kpi-val" id="recovSleepScore">94%</div>
+              <div class="kpi-lbl">Sleep Quality Score</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-val" id="recovSleepHours">8.2 hrs</div>
+              <div class="kpi-lbl">Total Sleep Duration</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-val" id="recovDeepHours" style="color:var(--electric-lime);">1.8 hrs</div>
+              <div class="kpi-lbl">Deep Slow-Wave (SWS)</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-val" id="recovRhr" style="color:var(--recovery-aqua);">44 BPM</div>
+              <div class="kpi-lbl">Resting Heart Rate</div>
+            </div>
+          </div>
+
+          <!-- HRV 14-Day Graph -->
+          <div class="chart-card" style="margin-bottom:24px;">
+            <div class="chart-card-header">
+              <h3 class="chart-card-title">14-Day HRV RMSSD Trend vs. Readiness Score</h3>
+            </div>
+            <div class="chart-container-rel">
+              <canvas id="chartHrvCanvas"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- ------------------------------------------------------------------
+             TAB 5: REPORTS & EXPORT (CSV, PDF, Print that ACTUALLY WORK)
+             ------------------------------------------------------------------ -->
+        <section class="dash-tab-pane" id="tab-reports">
+          <div class="pane-header">
+            <div class="pane-title">
+              <h2>Data Portability &amp; Clinical Audit Exports</h2>
+              <p>Export certified biometric time-series data in open formats. 100% data ownership.</p>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:24px;">
+            <!-- CSV Export Card -->
+            <div class="dash-table-card" style="text-align:center; padding:36px 24px;">
+              <div style="width:58px; height:58px; border-radius:50%; background:rgba(198,255,61,0.15); border:2px solid var(--electric-lime); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c6ff3d" stroke-width="2.5"><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
+              </div>
+              <h3 style="font-size:1.3rem; margin-bottom:8px;">Export Raw CSV</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:24px;">Full tabular export of all dates, heart rate zones, calories, strain, and notes for Excel or Python analysis.</p>
+              <button class="btn btn-primary" id="btnExportCsv" style="width:100%;">
+                Download .CSV Telemetry
+              </button>
+            </div>
+
+            <!-- PDF Export Card -->
+            <div class="dash-table-card" style="text-align:center; padding:36px 24px;">
+              <div style="width:58px; height:58px; border-radius:50%; background:rgba(46,242,194,0.15); border:2px solid var(--recovery-aqua); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2ef2c2" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <h3 style="font-size:1.3rem; margin-bottom:8px;">Certified PDF Report</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:24px;">Clinical sports science report with verified telemetry summaries, formatted for doctors and head coaches.</p>
+              <button class="btn btn-secondary" id="btnExportPdf" style="width:100%;">
+                Generate &amp; Open PDF
+              </button>
+            </div>
+
+            <!-- Print Card -->
+            <div class="dash-table-card" style="text-align:center; padding:36px 24px;">
+              <div style="width:58px; height:58px; border-radius:50%; background:rgba(255,106,77,0.15); border:2px solid var(--heat-coral); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6a4d" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              </div>
+              <h3 style="font-size:1.3rem; margin-bottom:8px;">Direct Printout</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:24px;">Sends the current telemetry snapshot directly to your printer with ink-optimized high-contrast styling.</p>
+              <button class="btn btn-outline" id="btnPrintReport" style="width:100%;">
+                Print Telemetry Now
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ------------------------------------------------------------------
+             TAB 6: CLIENTS & ROSTER (Client Access Control)
+             ------------------------------------------------------------------ -->
+        <section class="dash-tab-pane" id="tab-clients">
+          <div class="pane-header">
+            <div class="pane-title">
+              <h2>Athlete Client Access Control &amp; Roster</h2>
+              <p>Grant, modify, or revoke per-client access (Edit vs View-Only permissions).</p>
+            </div>
+          </div>
+
+          <!-- Dynamic container for Coach Roster or Athlete Privacy Shield -->
+          <div id="clientsViewContainer">
+            <div style="text-align:center; padding:40px; color:var(--text-muted);">Syncing athlete roster permissions...</div>
+          </div>
+        </section>
+
+        <!-- ------------------------------------------------------------------
+             TAB 7: SETTINGS & DEMO ROLE SWITCHER
+             ------------------------------------------------------------------ -->
+        <section class="dash-tab-pane" id="tab-settings">
+          <div class="pane-header">
+            <div class="pane-title">
+              <h2>Account Settings &amp; Role Switcher</h2>
+              <p>Configure personal biometrics or test multiple roles instantly.</p>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+            <!-- Profile Settings -->
+            <div class="dash-table-card">
+              <h3 style="font-size:1.2rem; margin-bottom:16px;">Athlete Bio Profile</h3>
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input class="form-input" type="text" id="settingsName" readonly>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input class="form-input" type="email" id="settingsEmail" readonly>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="showToast('Profile configuration saved.', 'success');">Save Bio Preferences</button>
+            </div>
+
+            <!-- Instant Demo Role Switcher -->
+            <div class="dash-table-card" style="border-color:var(--electric-lime);">
+              <div class="eyebrow eyebrow-lime" style="margin-bottom:10px;">Evaluation Utility</div>
+              <h3 style="font-size:1.2rem; margin-bottom:10px;">Instant Demo Account Switcher</h3>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
+                Switch between RBAC permissions instantly to review how Coach, Admin, and Client athletes experience the app.
+              </p>
+
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <button class="btn btn-outline" data-switch-demo="admin" style="justify-content:flex-start; text-align:left;">
+                  <span style="font-size:1.2rem; margin-right:8px;">👑</span>
+                  <div>
+                    <strong>Dr. Julian Cross (Clinic Admin)</strong>
+                    <div style="font-size:0.75rem; color:var(--text-muted);">admin@pulseforge.io &bull; Full governance &amp; roster controls</div>
+                  </div>
+                </button>
+
+                <button class="btn btn-outline" data-switch-demo="coach" style="justify-content:flex-start; text-align:left;">
+                  <span style="font-size:1.2rem; margin-right:8px;">🏋️‍♂️</span>
+                  <div>
+                    <strong>Coach Marcus Vance (Head Coach)</strong>
+                    <div style="font-size:0.75rem; color:var(--text-muted);">coach@pulseforge.io &bull; Manages athletes &amp; edits permissions</div>
+                  </div>
+                </button>
+
+                <button class="btn btn-outline" data-switch-demo="client" style="justify-content:flex-start; text-align:left;">
+                  <span style="font-size:1.2rem; margin-right:8px;">🏃</span>
+                  <div>
+                    <strong>Elena Rostova (Olympic Athlete)</strong>
+                    <div style="font-size:0.75rem; color:var(--text-muted);">athlete@pulseforge.io &bull; Private athlete telemetry</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: ADD WORKOUT
+       ======================================================================== -->
+  <div class="modal-overlay" id="modalAddWorkout">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 style="font-size:1.3rem;">Log Performance Workout</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="formAddWorkout">
+        <div class="form-group">
+          <label class="form-label">Workout Title</label>
+          <input class="form-input" type="text" name="title" required placeholder="e.g. Threshold VO2 800m Repeats">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-select" name="category" required>
+              <option value="Endurance">Endurance</option>
+              <option value="Strength">Strength</option>
+              <option value="HIIT">HIIT</option>
+              <option value="Cardio">Cardio</option>
+              <option value="Recovery">Recovery</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Duration (Minutes)</label>
+            <input class="form-input" type="number" name="duration_min" required min="5" max="360" value="60">
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label">Calories Burned</label>
+            <input class="form-input" type="number" name="calories_burned" required min="50" max="4000" value="650">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Average HR (BPM)</label>
+            <input class="form-input" type="number" name="avg_hr" min="60" max="220" value="155">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Session Notes</label>
+          <input class="form-input" type="text" name="notes" placeholder="e.g. Cadence felt strong, blood lactate 2.1 mmol">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+          <button type="button" class="btn btn-outline modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save to Log</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: ADD MEAL
+       ======================================================================== -->
+  <div class="modal-overlay" id="modalAddMeal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 style="font-size:1.3rem;">Log Nutritional Intake</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="formAddMeal">
+        <div class="form-group">
+          <label class="form-label">Food / Meal Description</label>
+          <input class="form-input" type="text" name="meal_name" required placeholder="e.g. Whey Peptide Shake &amp; Blueberries">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Meal Type</label>
+          <select class="form-select" name="meal_type" required>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Post-Workout">Post-Workout</option>
+            <option value="Pre-Workout">Pre-Workout</option>
+            <option value="Snack">Snack</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label">Calories</label>
+            <input class="form-input" type="number" name="calories" required min="10" max="3000" value="450">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Protein (g)</label>
+            <input class="form-input" type="number" name="protein_g" min="0" max="250" value="40">
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label">Carbs (g)</label>
+            <input class="form-input" type="number" name="carbs_g" min="0" max="300" value="48">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fat (g)</label>
+            <input class="form-input" type="number" name="fat_g" min="0" max="150" value="12">
+          </div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+          <button type="button" class="btn btn-outline modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Record Meal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: INVITE CLIENT (Coach/Admin)
+       ======================================================================== -->
+  <div class="modal-overlay" id="modalInviteClient">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 style="font-size:1.3rem;">Invite Athlete Client</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="formInviteClient">
+        <div class="form-group">
+          <label class="form-label">Athlete Full Name</label>
+          <input class="form-input" type="text" name="name" required placeholder="e.g. Liam Sterling">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Athlete Email</label>
+          <input class="form-input" type="email" name="email" required placeholder="e.g. liam@athlete.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Initial Access Permission</label>
+          <select class="form-select" name="permission" required>
+            <option value="edit">Edit Access (Athlete can log sessions &amp; modify entries)</option>
+            <option value="view">View-Only Access (Athlete audits coach programmed telemetry)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sport / Bio Description</label>
+          <input class="form-input" type="text" name="bio" placeholder="e.g. Marathoner &bull; Sub-3 target">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+          <button type="button" class="btn btn-outline modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Dispatch Invitation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" type="button" aria-label="Scroll to top" title="Scroll to top">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/tilt.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

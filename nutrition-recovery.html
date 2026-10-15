@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseForge — Nutrition &amp; Autonomic Recovery Architecture</title>
+  <meta name="description" content="Precision macro tracking, interactive calorie rings, cellular hydration, circadian sleep staging, HRV readiness scoring, and cold/sauna recovery protocols.">
+  <meta name="keywords" content="fitness recovery, nutrition tracking, macro rings, HRV readiness, cold plunge protocol, sauna recovery, sleep staging">
+  <meta name="author" content="PulseForge Engineering">
+  <link rel="canonical" href="https://pulseforge.io/nutrition-recovery.html">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PulseForge — Nutrition &amp; Autonomic Recovery Architecture">
+  <meta property="og:description" content="Precision macro tracking, interactive calorie rings, cellular hydration, and HRV readiness scoring.">
+  <meta property="og:image" content="assets/images/hero/hero-runner.jpg">
+  <meta property="og:url" content="https://pulseforge.io/nutrition-recovery.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PulseForge — Nutrition &amp; Recovery">
+  <meta name="twitter:description" content="Precision macro tracking, interactive calorie rings, and HRV readiness scoring.">
+  <meta name="twitter:image" content="assets/images/hero/hero-runner.jpg">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "PulseForge Nutrition & Autonomic Recovery",
+    "description": "Precision macro tracking, interactive calorie rings, circadian sleep staging, and HRV readiness scoring.",
+    "url": "https://pulseforge.io/nutrition-recovery.html"
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-follower"></div>
+  <div class="scroll-progress-bar"></div>
+
+  <!-- NAVBAR (STRICT: exactly 4 center links) -->
+  <header class="site-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="PulseForge Home">
+        <img src="assets/images/logo.png" alt="PulseForge Logo" width="200" height="50">
+      </a>
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="nutrition-recovery.html" class="active">Nutrition &amp; Recovery</a></li>
+          <li><a href="analytics.html">Analytics</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login-btn" id="navLoginBtn" title="Athlete Portal Login" aria-label="Login">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Login</span>
+        </a>
+        <a href="dashboard.html" class="btn btn-primary btn-sm nav-dashboard-btn" id="navAuthCta">
+          <span>Dashboard</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu-drawer" aria-hidden="true">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="nutrition-recovery.html" class="active">Nutrition &amp; Recovery</a></li>
+      <li><a href="analytics.html">Analytics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="display:flex; flex-direction:column; gap:12px; margin-top:32px; width:100%; max-width:280px;">
+      <a href="dashboard.html" class="btn btn-primary btn-lg" style="text-align:center;">Dashboard</a>
+      <a href="login.html" class="btn btn-secondary btn-lg" style="text-align:center;">Login / Portal</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ======================================================================
+         SECTION 1: SUB-HERO
+         ====================================================================== -->
+    <section class="hero-section" style="padding-top: 140px; padding-bottom: 70px;">
+      <div class="container">
+        <div style="max-width: 840px; margin: 0 auto; text-align: center;">
+          <div class="eyebrow eyebrow-aqua">Metabolic &amp; Cellular Restoration</div>
+          <h1>
+            Precision Macro Fueling &amp; <span class="gradient-text-aqua">Autonomic Recovery</span>
+          </h1>
+          <p class="lead-text" style="margin-top: 20px;">
+            Training breaks muscle tissue down. Fuel and restorative sleep build it back stronger. PulseForge closes the loop between dietary macronutrients and nervous system supercompensation.
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center; margin-top: 32px; flex-wrap: wrap;">
+            <a href="#macro-demo" class="btn btn-primary">Try Interactive Macro Rings &darr;</a>
+            <a href="#protocols" class="btn btn-secondary">Explore Recovery Protocols &darr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: INTERACTIVE MACRO & CALORIE TRACKER DEMO (Interactive Rings)
+         ====================================================================== -->
+    <section class="section-pad" id="macro-demo" style="background: #051418;">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-lime">Live Interactive Prototype</div>
+          <h2>Interactive Macro &amp; Energy Ring Matrix</h2>
+          <p>Tweak your training focus below and watch the metabolic rings adapt in real-time.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; max-width: 960px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 48px 36px;">
+          <!-- Left: SVG Rings Visualizer -->
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <svg viewBox="0 0 240 240" width="240" height="240" style="transform: rotate(-90deg);">
+              <!-- Background Tracks -->
+              <circle cx="120" cy="120" r="95" stroke="#071a1f" stroke-width="14" fill="none"/>
+              <circle cx="120" cy="120" r="75" stroke="#071a1f" stroke-width="14" fill="none"/>
+              <circle cx="120" cy="120" r="55" stroke="#071a1f" stroke-width="14" fill="none"/>
+              
+              <!-- Protein Ring (Outer - Lime) -->
+              <circle id="demoRingProtein" cx="120" cy="120" r="95" stroke="#c6ff3d" stroke-width="14" stroke-linecap="round" fill="none" stroke-dasharray="597" stroke-dashoffset="180" style="transition: stroke-dashoffset 0.8s ease;"/>
+              <!-- Carbs Ring (Middle - Aqua) -->
+              <circle id="demoRingCarbs" cx="120" cy="120" r="75" stroke="#2ef2c2" stroke-width="14" stroke-linecap="round" fill="none" stroke-dasharray="471" stroke-dashoffset="120" style="transition: stroke-dashoffset 0.8s ease;"/>
+              <!-- Fats Ring (Inner - Coral) -->
+              <circle id="demoRingFat" cx="120" cy="120" r="55" stroke="#ff6a4d" stroke-width="14" stroke-linecap="round" fill="none" stroke-dasharray="345" stroke-dashoffset="110" style="transition: stroke-dashoffset 0.8s ease;"/>
+            </svg>
+            <div style="margin-top: -140px; transform: rotate(0deg); text-align: center; pointer-events: none; margin-bottom: 70px;">
+              <div id="demoCaloriesText" style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--text-sand);">2,640</div>
+              <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">kcal Target</div>
+            </div>
+          </div>
+
+          <!-- Right: Controls & Macro Breakdown -->
+          <div>
+            <div style="margin-bottom: 24px;">
+              <label style="font-size: 0.88rem; font-weight: 700; color: var(--text-sand); display: block; margin-bottom: 8px;">Select Athletic Phase:</label>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="btn btn-sm btn-primary btn-phase" data-phase="hypertrophy">Hypertrophy (High Protein)</button>
+                <button class="btn btn-sm btn-outline btn-phase" data-phase="endurance">Endurance (High Carb)</button>
+                <button class="btn btn-sm btn-outline btn-phase" data-phase="recovery">Rest / Deload</button>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(11,42,48,0.5); border-radius: 8px; border-left: 4px solid var(--electric-lime);">
+                <div>
+                  <strong style="color: var(--text-sand);">Protein (4 kcal/g)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Muscle Protein Synthesis</div>
+                </div>
+                <span id="demoValProtein" style="font-weight: 800; color: var(--electric-lime); font-size: 1.15rem;">195g (30%)</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(11,42,48,0.5); border-radius: 8px; border-left: 4px solid var(--recovery-aqua);">
+                <div>
+                  <strong style="color: var(--text-sand);">Carbohydrates (4 kcal/g)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Glycogen Replenishment</div>
+                </div>
+                <span id="demoValCarbs" style="font-weight: 800; color: var(--recovery-aqua); font-size: 1.15rem;">290g (44%)</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(11,42,48,0.5); border-radius: 8px; border-left: 4px solid var(--heat-coral);">
+                <div>
+                  <strong style="color: var(--text-sand);">Lipids / Healthy Fats (9 kcal/g)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Hormone &amp; Cell Signaling</div>
+                </div>
+                <span id="demoValFat" style="font-weight: 800; color: var(--heat-coral); font-size: 1.15rem;">75g (26%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="max-width: 880px; margin: 40px auto 0; text-align: center;">
+          <img src="assets/images/nutrition/macro-plate.jpg" alt="Precision Macro Balanced Athletic Nutrition Plate" width="600" height="450" loading="lazy" style="width: 100%; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle); box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: SMART MEAL PLANNER CARDS (3D Tilt Cards)
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-coral">Nutritional Architecture</div>
+          <h2>Smart Macro Periodization Strategies</h2>
+          <p>Different training adaptations require distinct biochemical fuel substrates.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Card 1 -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Anabolic Window Sync</h3>
+              <p class="tilt-inner-desc">40g whey/casein isolate + 60g high-glycemic carbohydrates consumed within 45 minutes of heavy resistance workouts optimizes mTOR signaling.</p>
+              <div class="tilt-inner-metric">
+                <span>Leucine Threshold: 3.5g Peak</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Carb-Cycling Cadence</h3>
+              <p class="tilt-inner-desc">High carbohydrate days align with double-threshold sessions, while deload days transition to anti-inflammatory monounsaturated fats.</p>
+              <div class="tilt-inner-metric">
+                <span>Dynamic Insulin Sensitivity</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Pre-Sleep Casein &amp; Zinc</h3>
+              <p class="tilt-inner-desc">Slow-digesting micellar casein and zinc picolinate sustained amino acid delivery throughout deep delta wave REM phases.</p>
+              <div class="tilt-inner-metric">
+                <span>7-Hour Steady Plasma Am゙inos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: HYDRATION & ELECTROLYTE TRACKER WIDGET
+         ====================================================================== -->
+    <section class="section-pad" style="background: #051418;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; max-width: 960px; margin: 0 auto;">
+          <div>
+            <div class="eyebrow eyebrow-aqua">Fluid Dynamics</div>
+            <h2>Cellular Hydration &amp; Osmolarity</h2>
+            <p style="margin: 18px 0 24px;">
+              A 2% drop in cellular fluid causes up to a 15% reduction in aerobic VO2 max. PulseForge tracks sweat rate coefficients, sodium loss, and magnesium absorption.
+            </p>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px;">
+              <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px;">
+                <span>Daily Hydration Goal:</span>
+                <span style="color: var(--recovery-aqua);">3,500 mL</span>
+              </div>
+              <div style="background: #071a1f; height: 12px; border-radius: 6px; overflow: hidden;">
+                <div style="background: linear-gradient(90deg, #2ef2c2, #c6ff3d); width: 88%; height: 100%;"></div>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">3,080 mL logged today (88% completed)</div>
+            </div>
+            <a href="dashboard.html" class="btn btn-secondary">Log Fluid in App &rarr;</a>
+          </div>
+
+          <div style="text-align: center;">
+            <img src="assets/images/nutrition/hydration-matrix.jpg" alt="Hydration matrix with sodium and potassium levels" width="600" height="500" loading="lazy" style="width: 100%; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: SUPPLEMENT & MICRONUTRIENT PROTOCOL GUIDE
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-lime">Evidence-Based Stack</div>
+          <h2>Clinical Micronutrient &amp; Ergogenic Protocols</h2>
+          <p>Every supplement in our protocol is backed by meta-analytic randomized controlled trials.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+              </div>
+              <h3 class="tilt-inner-title">Creatine Monohydrate</h3>
+              <p class="tilt-inner-desc">5g daily saturation increases intramuscular phosphocreatine reserves by 20%, enhancing explosive anaerobic ATP recycling and brain cognitive stamina.</p>
+              <div class="tilt-inner-metric"><span>Dose: 5,000 mg / Day</span></div>
+            </div>
+          </div>
+
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h3 class="tilt-inner-title">Magnesium Bisglycinate</h3>
+              <p class="tilt-inner-desc">Chelated high-bioavailability magnesium crosses the blood-brain barrier to bind GABA-A receptors, calming neuromuscular excitability before bed.</p>
+              <div class="tilt-inner-metric"><span>Dose: 400 mg Pre-Sleep</span></div>
+            </div>
+          </div>
+
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2a10 10 0 0 0-7.5 16.6L12 22l7.5-3.4A10 10 0 0 0 12 2z"/></svg>
+              </div>
+              <h3 class="tilt-inner-title">Tart Cherry Anthocyanins</h3>
+              <p class="tilt-inner-desc">Natural cyclooxygenase (COX-1/2) inhibition accelerates post-marathon isometric force recovery and reduces delayed onset muscle soreness.</p>
+              <div class="tilt-inner-metric"><span>Dose: 480 mg Polyphenols</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 6: SLEEP QUALITY & CIRCADIAN RHYTHM ANALYSIS
+         ====================================================================== -->
+    <section class="section-pad" style="background: #051418;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; max-width: 960px; margin: 0 auto;">
+          <div>
+            <img src="assets/images/recovery/sleep-architecture.jpg" alt="Athlete in deep restorative slow-wave sleep for autonomic neural recovery" width="500" height="380" loading="lazy" style="width: 100%; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle);">
+          </div>
+          <div>
+            <div class="eyebrow" style="color: var(--soft-violet); border-color: rgba(139,123,255,0.3); background: rgba(139,123,255,0.08);">Autonomic Sleep Telemetry</div>
+            <h2>The Science of Slow-Wave Restoration</h2>
+            <p style="margin: 16px 0 20px;">
+              95% of human growth hormone is secreted during Stage 3/4 Deep Slow-Wave Sleep (SWS). PulseForge calculates sleep debt, restlessness indices, and circadian phase alignment.
+            </p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; font-size: 0.94rem;">
+              <li style="display: flex; gap: 10px; color: var(--text-sand);"><span style="color: var(--soft-violet);">●</span> Deep Sleep Target: &gt; 1h 45m per night</li>
+              <li style="display: flex; gap: 10px; color: var(--text-sand);"><span style="color: var(--recovery-aqua);">●</span> REM Cognitive Integration: &gt; 2h 00m</li>
+              <li style="display: flex; gap: 10px; color: var(--text-sand);"><span style="color: var(--electric-lime);">●</span> Resting Heart Rate Dip: &gt; 15% drop from baseline</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 7: HRV & AUTONOMIC READINESS SCORE EXPLAINER
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-aqua">Neurocardiology</div>
+          <h2>Decoding Heart Rate Variability (rMSSD)</h2>
+          <p>The microsecond variance between consecutive heartbeats is your central nervous system dashboard.</p>
+        </div>
+
+        <div style="max-width: 820px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 36px; text-align: center;">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px;">
+            <div style="padding: 20px; background: rgba(7,26,31,0.6); border-radius: 8px; border-top: 3px solid var(--electric-lime);">
+              <h3 style="color: var(--electric-lime); font-size: 1.1rem; margin-bottom: 8px;">Peak Readiness (85–100%)</h3>
+              <p style="font-size: 0.85rem;">Parasympathetic dominance. Nervous system primed for maximum neural load, PR attempts, and high-intensity intervals.</p>
+            </div>
+            <div style="padding: 20px; background: rgba(7,26,31,0.6); border-radius: 8px; border-top: 3px solid var(--recovery-aqua);">
+              <h3 style="color: var(--recovery-aqua); font-size: 1.1rem; margin-bottom: 8px;">Adaptive Zone (65–84%)</h3>
+              <p style="font-size: 0.85rem;">Equilibrium maintained. Ideal for steady-state Zone 2 aerobic base building, hypertrophy volume, and active recovery.</p>
+            </div>
+            <div style="padding: 20px; background: rgba(7,26,31,0.6); border-radius: 8px; border-top: 3px solid var(--heat-coral);">
+              <h3 style="color: var(--heat-coral); font-size: 1.1rem; margin-bottom: 8px;">Sympathetic Strain (&lt;65%)</h3>
+              <p style="font-size: 0.85rem;">High systemic inflammation or neural fatigue. Prioritize thermal contrast protocols, low-glycemic fueling, and restorative sleep.</p>
+            </div>
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text-muted);">
+            PulseForge recalculates your readiness score automatically every morning upon awakening.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 8: RECOVERY PROTOCOLS (3D Tilt / Center Aligned)
+         ====================================================================== -->
+    <section class="section-pad" id="protocols" style="background: #051418;">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-coral">Thermal &amp; Mechanical Therapy</div>
+          <h2>Evidence-Based Recovery Protocols</h2>
+          <p>Scientific timing, temperature, and duration for physical tissue repair.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Cold Plunge -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <img src="assets/images/recovery/cold-plunge.jpg" alt="Athlete undergoing cold water immersion in ice-chilled recovery plunge" width="800" height="500" loading="lazy" class="tilt-card-img">
+              <h3 class="tilt-inner-title">Cold Water Immersion</h3>
+              <p class="tilt-inner-desc">Submerge in 10°C–12°C water for 3–5 minutes. Triggers profound vasoconstriction, lowers muscle core temperature, and boosts circulating dopamine by 250%.</p>
+              <div class="tilt-inner-metric"><span>Temp: 10°C &bull; Duration: 4m</span></div>
+            </div>
+          </div>
+
+          <!-- Infrared Sauna -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <img src="assets/images/recovery/infrared-sauna.jpg" alt="Athlete in modern cedar wood infrared sauna with ambient thermal glow" width="800" height="500" loading="lazy" class="tilt-card-img">
+              <h3 class="tilt-inner-title">Infrared Thermal Sauna</h3>
+              <p class="tilt-inner-desc">20 minutes at 80°C upregulates Heat Shock Proteins (HSP70), protecting cellular proteins against oxidative misfolding and promoting plasma volume expansion.</p>
+              <div class="tilt-inner-metric"><span>Temp: 80°C &bull; Duration: 20m</span></div>
+            </div>
+          </div>
+
+          <!-- Myofascial Mobility -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <img src="assets/images/recovery/mobility-session.jpg" alt="Athlete applying high-tech percussion therapy gun for deep myofascial release" width="800" height="500" loading="lazy" class="tilt-card-img">
+              <h3 class="tilt-inner-title">Myofascial Flossing</h3>
+              <p class="tilt-inner-desc">Targeted percussive therapy and dynamic mobility flossing breaks fascial adhesions and enhances venous blood return to accelerate metabolite clearance.</p>
+              <div class="tilt-inner-metric"><span>Cadence: 15m Post-Workout</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 9: WEEKLY RECOVERY HEATMAP
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-lime">7-Day Bio-Matrix</div>
+          <h2>Weekly Autonomic Recovery Heatmap</h2>
+          <p>Review the undulating balance of load vs supercompensation over the last seven days.</p>
+        </div>
+
+        <div style="max-width: 860px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 32px; overflow-x: auto;">
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; min-width: 600px; text-align: center;">
+            <div style="padding: 16px 8px; background: rgba(198,255,61,0.15); border: 1px solid var(--electric-lime); border-radius: 8px;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">MON</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: var(--electric-lime); margin: 6px 0;">94%</div>
+              <div style="font-size: 0.72rem; color: var(--text-sand);">88 ms HRV</div>
+            </div>
+            <div style="padding: 16px 8px; background: rgba(46,242,194,0.15); border: 1px solid var(--recovery-aqua); border-radius: 8px;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">TUE</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: var(--recovery-aqua); margin: 6px 0;">89%</div>
+              <div style="font-size: 0.72rem; color: var(--text-sand);">82 ms HRV</div>
+            </div>
+            <div style="padding: 16px 8px; background: rgba(198,255,61,0.15); border: 1px solid var(--electric-lime); border-radius: 8px;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">WED</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: var(--electric-lime); margin: 6px 0;">96%</div>
+              <div style="font-size: 0.72rem; color: var(--text-sand);">92 ms HRV</div>
+            </div>
+            <div style="padding: 16px 8px; background: rgba(255,106,77,0.15); border: 1px solid var(--heat-coral); border-radius: 8px;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">THU</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: var(--heat-coral); margin: 6px 0;">79%</div>
+              <div style="font-size: 0.72rem; color: var(--text-sand);">74 ms HRV</div>
+            </div>
+            <div style="padding: 16px 8px; background: rgba(46,242,194,0.15); border: 1px solid var(--recovery-aqua); border-radius: 8px;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">FRI</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: var(--recovery-aqua); margin: 6px 0;">92%</div>
+              <div style="font-size: 0.72rem; color: var(--text-sand);">86 ms HRV</div>
+            </div>
+            <div style="padding: 16px 8px; background: rgba(255,106,77,0.15); border: 1px solid var(--heat-coral); border-radius: 8px;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">SAT</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: var(--heat-coral); margin: 6px 0;">72%</div>
+              <div style="font-size: 0.72rem; color: var(--text-sand);">68 ms HRV</div>
+            </div>
+            <div style="padding: 16px 8px; background: rgba(198,255,61,0.15); border: 1px solid var(--electric-lime); border-radius: 8px;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">SUN</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: var(--electric-lime); margin: 6px 0;">94%</div>
+              <div style="font-size: 0.72rem; color: var(--text-sand);">89 ms HRV</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 10: ELITE COACH TIPS & RECOVERY BIO-HACKS
+         ====================================================================== -->
+    <section class="section-pad" style="background: #051418;">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-coral">Coach's Playbook</div>
+          <h2>Elite Recovery Protocols from Head Coaches</h2>
+          <p>Micro-adjustments that prevent systemic burnout during heavy training blocks.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; max-width: 980px; margin: 0 auto;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 28px;">
+            <div style="color: var(--electric-lime); font-weight: 800; margin-bottom: 8px;">TIP #1: THE 3-HOUR PRE-BED MEAL CUTOFF</div>
+            <p style="font-size: 0.95rem;">Consuming large meals less than 3 hours before sleep forces cardiac output into digestive splanchnic circulation, artificially elevating nocturnal resting heart rate by 8–12 BPM.</p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 28px;">
+            <div style="color: var(--recovery-aqua); font-weight: 800; margin-bottom: 8px;">TIP #2: THERMAL CONTRAST TIMING</div>
+            <p style="font-size: 0.95rem;">Avoid cold water immersion within 4 hours of hypertrophy resistance training to protect inflammatory satellite cell proliferation; prioritize cold plunge on endurance days instead.</p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 28px;">
+            <div style="color: var(--heat-coral); font-weight: 800; margin-bottom: 8px;">TIP #3: ELECTROLYTE OSMOLARITY MATCHING</div>
+            <p style="font-size: 0.95rem;">Drinking plain water without 500mg sodium during long sessions dilutes blood sodium, lowering neuromuscular transmission efficiency and triggering early cramps.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 11: PERFORMANCE RECIPE GALLERY (4 Unique Local Dishes)
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-lime">Fuel Recipes</div>
+          <h2>Performance Chef Nutrition Library</h2>
+          <p>Four chef-crafted athletic meals calibrated for optimal macro distribution.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+          <!-- Recipe 1 -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <img src="assets/images/nutrition/recipe-salmon-bowl.jpg" alt="Wild Salmon and Quinoa Bowl" width="500" height="350" loading="lazy" class="tilt-card-img">
+              <h3 class="tilt-inner-title">Wild Salmon Quinoa Bowl</h3>
+              <p class="tilt-inner-desc">Rich in Omega-3 EPA/DHA fatty acids for cell membrane fluidity and joint cartilage protection.</p>
+              <div class="tilt-inner-metric"><span>52g Protein &bull; 602 kcal</span></div>
+            </div>
+          </div>
+
+          <!-- Recipe 2 -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <img src="assets/images/nutrition/recipe-oats-recovery.jpg" alt="Carb-Cycling Overnight Oats" width="500" height="350" loading="lazy" class="tilt-card-img">
+              <h3 class="tilt-inner-title">Tart Cherry Overnight Oats</h3>
+              <p class="tilt-inner-desc">Complex slow-digesting beta-glucans blended with high-antioxidant Montmorency tart cherry extract.</p>
+              <div class="tilt-inner-metric"><span>34g Protein &bull; 540 kcal</span></div>
+            </div>
+          </div>
+
+          <!-- Recipe 3 -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <img src="assets/images/nutrition/recipe-steak-fuel.jpg" alt="Grass-Fed Filet and Sweet Potato" width="500" height="350" loading="lazy" class="tilt-card-img">
+              <h3 class="tilt-inner-title">Filet Mignon &amp; Roasted Yam</h3>
+              <p class="tilt-inner-desc">High bioavailable heme iron, carnosine, and zinc for red blood cell hemoglobin synthesis.</p>
+              <div class="tilt-inner-metric"><span>58g Protein &bull; 606 kcal</span></div>
+            </div>
+          </div>
+
+          <!-- Recipe 4 -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <img src="assets/images/nutrition/recipe-green-smoothie.jpg" alt="Chlorophyll Peptide Recovery Smoothie" width="500" height="350" loading="lazy" class="tilt-card-img">
+              <h3 class="tilt-inner-title">Chlorophyll Peptide Blend</h3>
+              <p class="tilt-inner-desc">Hydrolyzed collagen peptides, spirulina, and ginger root to accelerate connective tissue repair.</p>
+              <div class="tilt-inner-metric"><span>28g Protein &bull; 294 kcal</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 12: FINAL HIGH-IMPACT CTA BAND
+         ====================================================================== -->
+    <section class="section-pad" style="background: linear-gradient(180deg, #051418 0%, #071a1f 100%);">
+      <div class="container" style="text-align: center;">
+        <div style="background: var(--bg-card); border: 1px solid var(--electric-lime); border-radius: var(--radius-xl); padding: 60px 40px; max-width: 860px; margin: 0 auto; box-shadow: 0 0 50px var(--electric-lime-glow);">
+          <div class="eyebrow eyebrow-lime">SaaS Platform Access</div>
+          <h2>Synchronize Your Biometrics Today</h2>
+          <p style="margin: 16px 0 28px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Connect your devices or log your nutrition manually in our full SaaS application.
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="login.html" class="btn btn-primary btn-lg">Launch Free Trial</a>
+            <a href="dashboard.html" class="btn btn-outline btn-lg">Go to Dashboard &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html">
+            <img src="assets/images/logo.png" alt="PulseForge Logo" width="180" height="45">
+          </a>
+          <p>
+            Autonomous biometric performance tracking, circadian recovery architecture, and macro fueling for elite human potential.
+          </p>
+          <div style="font-size: 0.85rem; color: var(--electric-lime); font-weight: 700;">
+            TAGLINE: "Fuel. Recover. Perform."
+          </div>
+          <div class="footer-social-links" aria-label="PulseForge Social Media">
+            <a href="https://facebook.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="PulseForge on Facebook" title="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="PulseForge on Instagram" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="PulseForge on X" title="X (Twitter)">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="PulseForge on YouTube" title="YouTube">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home Overview</a></li>
+            <li><a href="nutrition-recovery.html">Nutrition &amp; Recovery</a></li>
+            <li><a href="analytics.html">Performance Analytics</a></li>
+            <li><a href="dashboard.html">Live Dashboard App</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Client Access</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Athlete Login</a></li>
+            <li><a href="login.html">Coach Portal</a></li>
+            <li><a href="analytics.html#pricing">Clinic Enterprise</a></li>
+            <li><a href="dashboard.html">Telemetry Export</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support &amp; Trust</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="privacy-policy.html#gdpr">Biometric Data Security</a></li>
+            <li><a href="contact.html#support">Sports Lab Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 PulseForge Technologies Inc. All rights reserved. Precision Sports Science.</div>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span>&bull;</span>
+          <a href="contact.html">Contact Engineering</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" type="button" aria-label="Scroll to top" title="Scroll to top">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/tilt.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Interactive Macro Rings prototype logic
+    document.querySelectorAll('.btn-phase').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.btn-phase').forEach(b => b.className = 'btn btn-sm btn-outline btn-phase');
+        btn.className = 'btn btn-sm btn-primary btn-phase';
+
+        const phase = btn.getAttribute('data-phase');
+        const rProt = document.getElementById('demoRingProtein');
+        const rCarb = document.getElementById('demoRingCarbs');
+        const rFat = document.getElementById('demoRingFat');
+        const calText = document.getElementById('demoCaloriesText');
+        const vProt = document.getElementById('demoValProtein');
+        const vCarb = document.getElementById('demoValCarbs');
+        const vFat = document.getElementById('demoValFat');
+
+        if (phase === 'hypertrophy') {
+          calText.textContent = '2,850';
+          rProt.style.strokeDashoffset = '140';
+          rCarb.style.strokeDashoffset = '160';
+          rFat.style.strokeDashoffset = '120';
+          vProt.textContent = '225g (32%)';
+          vCarb.textContent = '290g (41%)';
+          vFat.textContent = '85g (27%)';
+        } else if (phase === 'endurance') {
+          calText.textContent = '3,200';
+          rProt.style.strokeDashoffset = '240';
+          rCarb.style.strokeDashoffset = '40';
+          rFat.style.strokeDashoffset = '180';
+          vProt.textContent = '160g (20%)';
+          vCarb.textContent = '440g (55%)';
+          vFat.textContent = '88g (25%)';
+        } else {
+          calText.textContent = '2,150';
+          rProt.style.strokeDashoffset = '200';
+          rCarb.style.strokeDashoffset = '250';
+          rFat.style.strokeDashoffset = '140';
+          vProt.textContent = '180g (34%)';
+          vCarb.textContent = '175g (33%)';
+          vFat.textContent = '78g (33%)';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

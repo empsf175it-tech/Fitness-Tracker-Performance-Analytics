@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseForge — Elite Biometric Fitness Tracker &amp; Performance Analytics</title>
+  <meta name="description" content="PulseForge delivers high-resolution biometric fitness telemetry, metabolic nutrition sync, autonomic recovery scoring, and coach client access controls.">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="PulseForge — Fuel. Recover. Perform.">
+  <meta property="og:description" content="SaaS web application for elite fitness tracking, recovery architecture, and performance analytics.">
+  <meta property="og:image" content="assets/images/hero/hero-runner.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PulseForge",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "19.00",
+      "priceCurrency": "USD"
+    },
+    "description": "Fitness tracking, metabolic nutrition, recovery telemetry and coach access control platform."
+  }
+  </script>
+</head>
+<body>
+  <!-- Custom Magnetic Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-follower"></div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar"></div>
+
+  <!-- ========================================================================
+       NAVBAR (STRICT: exactly 4 center links, logo left, Login CTA right)
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="PulseForge Home">
+        <img src="assets/images/logo.png" alt="PulseForge Logo" width="200" height="50">
+      </a>
+
+      <!-- 4 Strict Nav Links Center -->
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="nutrition-recovery.html">Nutrition &amp; Recovery</a></li>
+          <li><a href="analytics.html">Analytics</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Actions: Separate Login Icon & Dashboard Button -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login-btn" id="navLoginBtn" title="Athlete Portal Login" aria-label="Login">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Login</span>
+        </a>
+        <a href="dashboard.html" class="btn btn-primary btn-sm nav-dashboard-btn" id="navAuthCta">
+          <span>Dashboard</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fullscreen Animated Mobile Drawer -->
+  <div class="mobile-menu-drawer" aria-hidden="true">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="nutrition-recovery.html">Nutrition &amp; Recovery</a></li>
+      <li><a href="analytics.html">Analytics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="display:flex; flex-direction:column; gap:12px; margin-top:32px; width:100%; max-width:280px;">
+      <a href="dashboard.html" class="btn btn-primary btn-lg" style="text-align:center;">Dashboard</a>
+      <a href="login.html" class="btn btn-secondary btn-lg" style="text-align:center;">Login / Portal</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ======================================================================
+         SECTION 1: CINEMATIC HERO
+         ====================================================================== -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="eyebrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Autonomous Biometric Engine &bull; Next-Gen Telemetry
+            </div>
+            <h1>
+              Forge Elite Performance Through <span class="gradient-text-lime">Deep Bio-Signals</span> &amp; Metabolic Precision.
+            </h1>
+            <p class="lead-text" style="margin-top: 20px;">
+              Unify training strain, autonomic HRV recovery, and precision macronutrient fueling. Built for competitive athletes, sports scientists, and world-class coaches.
+            </p>
+
+            <!-- Live Animated ECG Pulse Strip -->
+            <div class="hero-ecg-container" title="Real-Time ECG Telemetry Stream">
+              <canvas id="heroEcgCanvas"></canvas>
+              <div class="ecg-overlay-stat">
+                <span class="anim-heartbeat" style="display:inline-block;">♥</span>
+                <span>72 BPM LIVE</span>
+              </div>
+            </div>
+
+            <!-- Two CTAs -->
+            <div class="hero-actions">
+              <a href="login.html" class="btn btn-primary btn-lg">
+                <span>Launch Free Trial</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              </a>
+              <a href="dashboard.html" class="btn btn-secondary btn-lg">
+                <span>Explore Live Demo App</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </a>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 16px; margin-top: 12px; font-size: 0.88rem; color: var(--text-muted);">
+              <span style="color: var(--electric-lime); font-weight: 700;">✓ Instant Cloud Sync</span>
+              <span>&bull;</span>
+              <span>No Credit Card Required</span>
+              <span>&bull;</span>
+              <span>Full CSV &amp; PDF Exports</span>
+            </div>
+          </div>
+
+          <!-- Hero Graphic -->
+          <div class="hero-visual-wrapper">
+            <img src="assets/images/hero/hero-runner.jpg" alt="Athletic biometric telemetry in dark teal environment" width="800" height="600" loading="eager">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: TRUST STRIP (Animated Counters)
+         ====================================================================== -->
+    <section class="trust-strip" aria-label="Biometric Metrics Summary">
+      <div class="container">
+        <h2 class="sr-only">Platform Reach and Biometric Benchmarks</h2>
+        <div class="metrics-counter-grid">
+          <div class="counter-item">
+            <div class="counter-num" data-counter="180000" data-suffix="+">180,000+</div>
+            <p>Active Athletes &amp; Coaches</p>
+          </div>
+          <div class="counter-item">
+            <div class="counter-num" data-counter="4.2" data-suffix="M+">4.2M+</div>
+            <p>Workouts Logged</p>
+          </div>
+          <div class="counter-item">
+            <div class="counter-num" data-counter="12.8" data-suffix="M+">12.8M+</div>
+            <p>Meals &amp; Macros Analyzed</p>
+          </div>
+          <div class="counter-item">
+            <div class="counter-num" data-counter="99.4" data-suffix="%">99.4%</div>
+            <p>Biometric Accuracy Benchmark</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: FEATURES GRID (8 3D Tilt Cards with center alignment)
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-lime">SaaS Capabilities</div>
+          <h2>Engineered for Uncompromising Human Performance</h2>
+          <p>Every algorithm is built on peer-reviewed sports physiology, giving you clear insights rather than raw noise.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Card 1: Heart Rate / Biometrics (Pulsing Heart) -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg class="anim-heartbeat" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Autonomous HRV &amp; Readiness</h3>
+              <p class="tilt-inner-desc">Continuous rMSSD tracking measures autonomic tone to predict daily neurological capacity before injury occurs.</p>
+              <div class="tilt-inner-metric">
+                <span>Avg HRV Peak: 88 ms</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Strength / Dumbbell Lift (Rotating Dumbbell) -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg class="anim-dumbbell" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M6 5v14M18 5v14M3 9v6M21 9v6M6 12h12"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Volume &amp; Strain Index</h3>
+              <p class="tilt-inner-desc">Quantify cardiovascular output and muscular load into a standardized 0–21 strain scale with adaptive fatigue alerts.</p>
+              <div class="tilt-inner-metric">
+                <span>Real-Time Day Strain: 15.2 / 21</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Nutrition & Macro Sync -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Metabolic Macro Rings</h3>
+              <p class="tilt-inner-desc">Synchronize protein synthesis thresholds, carb-cycling ratios, and hydration osmolarity according to metabolic demand.</p>
+              <div class="tilt-inner-metric">
+                <span>Protein Synthesis Target: 190g</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Sleep Architecture -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Circadian Sleep Architecture</h3>
+              <p class="tilt-inner-desc">Deep Slow-Wave and REM staging breakdown with sleep debt forecasting to optimize cellular tissue supercompensation.</p>
+              <div class="tilt-inner-metric">
+                <span>Restorative REM: 2h 15m</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Coach & Client Roster RBAC -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Client Access Control</h3>
+              <p class="tilt-inner-desc">Coaches and clinic admins invite athletes, configure granular edit vs view-only permissions, and supervise team rosters.</p>
+              <div class="tilt-inner-metric">
+                <span>Multi-Tier Roles: Admin / Coach / Client</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Export Engine (CSV/PDF) -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Multi-Format Data Export</h3>
+              <p class="tilt-inner-desc">Generate raw CSV datasets for spreadsheet modeling or instant clinical PDF reports with certified charts and print layouts.</p>
+              <div class="tilt-inner-metric">
+                <span>Instant CSV, PDF &amp; Print</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7: VO2 Max & Lactate -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Threshold Pace &amp; VO2 Max</h3>
+              <p class="tilt-inner-desc">Map aerobic decoupling, lactate threshold 2 (LT2) inflection, and functional threshold power with machine-precision trends.</p>
+              <div class="tilt-inner-metric">
+                <span>VO2 Max Baseline: 64.2 ml/kg</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8: AI Periodization -->
+          <div class="tilt-card-wrapper">
+            <div class="tilt-card" data-tilt>
+              <div class="tilt-inner-icon">
+                <svg class="anim-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+              </div>
+              <h3 class="tilt-inner-title">Adaptive Taper Engine</h3>
+              <p class="tilt-inner-desc">Dynamic periodization algorithms calibrate training volume to peak athletic readiness exactly on scheduled competition dates.</p>
+              <div class="tilt-inner-metric">
+                <span>Peak Supercompensation Window</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: "HOW IT WORKS" — 4-STEP ANIMATED TIMELINE
+         ====================================================================== -->
+    <section class="section-pad" style="background: #051418;">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-aqua">System Architecture</div>
+          <h2>The Four-Stage Performance Loop</h2>
+          <p>Continuous feedback translates raw biometric pulses into actionable breakthroughs.</p>
+        </div>
+
+        <div class="timeline-grid">
+          <div class="timeline-step">
+            <div class="timeline-num">01</div>
+            <h3>Track</h3>
+            <p>Stream cardiovascular telemetry, GPS cadence, and nutritional intake via automated biometric sync.</p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-num">02</div>
+            <h3>Analyze</h3>
+            <p>Our analytics engine calculates systemic strain, autonomic nervous balance, and metabolic turnover.</p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-num">03</div>
+            <h3>Recover</h3>
+            <p>Execute personalized infrared sauna, cold plunge, and sleep protocols based on real-time readiness.</p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-num">04</div>
+            <h3>Improve</h3>
+            <p>Break through personal records, eliminate overtraining risk, and maintain elite physiological stamina.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: DASHBOARD PREVIEW MOCKUP
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-coral">Live Application Interface</div>
+          <h2>A Command Center for Peak Human Potential</h2>
+          <p>Experience the dark glassmorphic dashboard built with instant reactivity and high-contrast precision.</p>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="dashboard.html" style="display: block; text-decoration: none;">
+            <img src="assets/images/hero/dashboard-preview.jpg" alt="PulseForge SaaS Dashboard Interface with live charts" width="1000" height="620" loading="lazy" style="width: 100%; max-width: 980px; border-radius: var(--radius-xl); box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px var(--electric-lime-glow); border: 1px solid var(--border-subtle); transition: transform 0.4s ease;">
+          </a>
+          <div style="margin-top: 24px;">
+            <a href="dashboard.html" class="btn btn-primary btn-lg">Launch Full Dashboard &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 6: NUTRITION & RECOVERY HIGHLIGHT SPLIT SECTION
+         ====================================================================== -->
+    <section class="section-pad" style="background: #051418;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+          <div>
+            <div class="eyebrow eyebrow-lime">Metabolic &amp; Nervous Sync</div>
+            <h2>Fuel Without Guesswork. Recover Without Compromise.</h2>
+            <p style="margin: 20px 0 24px;">
+              Elite performance is not won during training alone—it is forged during the repair window. PulseForge analyzes nutrient timing, micronutrient status, and autonomic nervous relaxation.
+            </p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px;">
+              <li style="display: flex; align-items: center; gap: 12px; color: var(--text-sand); font-weight: 500;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ef2c2" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Dynamic post-workout protein synthesis timing alerts
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px; color: var(--text-sand); font-weight: 500;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c6ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Circadian light exposure &amp; melatonin onset recommendations
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px; color: var(--text-sand); font-weight: 500;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff6a4d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Thermal therapy protocols: 80°C Sauna &bull; 10°C Cold Plunge
+              </li>
+            </ul>
+            <a href="nutrition-recovery.html" class="btn btn-secondary">Explore Nutrition &amp; Recovery &rarr;</a>
+          </div>
+
+          <div style="text-align: center;">
+            <img src="assets/images/hero/split-recovery.jpg" alt="Bio-recovery chamber with readiness dial" width="600" height="500" loading="lazy" style="width: 100%; max-width: 540px; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 7: WEARABLES & INTEGRATIONS MARQUEE
+         ====================================================================== -->
+    <section class="section-pad" style="padding: 60px 0; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container" style="text-align: center; margin-bottom: 24px;">
+        <span style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim);">
+          Seamless Biometric Telemetry Integrations
+        </span>
+      </div>
+
+      <div class="marquee-container">
+        <div class="marquee-track">
+          <div class="marquee-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Apple HealthKit Telemetry
+          </div>
+          <div class="marquee-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Garmin Connect Cloud
+          </div>
+          <div class="marquee-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9"/></svg>
+            Whoop 4.0 Bio-Strap
+          </div>
+          <div class="marquee-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Strava Athlete API
+          </div>
+          <div class="marquee-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/></svg>
+            Oura Ring Gen 3
+          </div>
+          <div class="marquee-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="12" r="4"/></svg>
+            Polar Flow ECG
+          </div>
+          <div class="marquee-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Coros Apex GPS
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 8: TESTIMONIALS SLIDER (Unique Avatars)
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-lime">Athlete &amp; Coach Endorsements</div>
+          <h2>Trusted on World Championship Podiums</h2>
+          <p>Read how leading coaches and endurance competitors rely on PulseForge for continuous bio-telemetry.</p>
+        </div>
+
+        <div class="testimonials-wrapper">
+          <!-- Slide 1 -->
+          <div class="testimonial-card active">
+            <img src="assets/images/avatars/athlete-elena.jpg" alt="Elena Rostova Avatar" class="testimonial-avatar" width="84" height="84">
+            <div style="color: var(--electric-lime); margin-bottom: 16px; font-size: 1.2rem;">★★★★★</div>
+            <p class="testimonial-quote">
+              "PulseForge gave me the exact autonomic readiness feedback I needed to know when to push threshold power and when to back off. My marathon split dropped by 4 minutes and 12 seconds."
+            </p>
+            <div class="testimonial-author">Elena Rostova</div>
+            <div class="testimonial-role">Olympic Triathlete &bull; National Record Holder</div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="testimonial-card">
+            <img src="assets/images/avatars/coach-marcus.jpg" alt="Coach Marcus Vance Avatar" class="testimonial-avatar" width="84" height="84">
+            <div style="color: var(--electric-lime); margin-bottom: 16px; font-size: 1.2rem;">★★★★★</div>
+            <p class="testimonial-quote">
+              "Managing a 25-athlete roster used to require four different spreadsheets. With PulseForge Coach Access, I set permissions, monitor morning HRV trends, and export verified reports in seconds."
+            </p>
+            <div class="testimonial-author">Coach Marcus Vance</div>
+            <div class="testimonial-role">Head Conditioning Director, High Performance Center</div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="testimonial-card">
+            <img src="assets/images/avatars/clinic-dr-kim.jpg" alt="Dr. David Kim Avatar" class="testimonial-avatar" width="84" height="84">
+            <div style="color: var(--electric-lime); margin-bottom: 16px; font-size: 1.2rem;">★★★★★</div>
+            <p class="testimonial-quote">
+              "The recovery score precision and sleep architecture breakdowns match clinical PSG telemetry remarkably well. It is now our default bio-tracking software across the institute."
+            </p>
+            <div class="testimonial-author">Dr. David Kim, MD</div>
+            <div class="testimonial-role">Director of Sports Longevity &amp; Human Performance</div>
+          </div>
+
+          <!-- Slider Controls -->
+          <div class="testimonial-controls">
+            <button class="slider-btn slider-btn-prev" aria-label="Previous Testimonial">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="slider-btn slider-btn-next" aria-label="Next Testimonial">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 9: PRICING TEASER
+         ====================================================================== -->
+    <section class="section-pad" style="background: #051418;">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-aqua">Transparent Tiers</div>
+          <h2>Invest in Your Highest Potential</h2>
+          <p>Transparent plans for solo competitors, elite multi-sport athletes, and coaching organizations.</p>
+        </div>
+
+        <div style="max-width: 600px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--electric-lime); border-radius: var(--radius-xl); padding: 40px; text-align: center; box-shadow: 0 0 40px var(--electric-lime-glow);">
+          <div class="discount-pill" style="display: inline-block; margin-bottom: 16px;">FEATURED PLAN &bull; 20% YEARLY SAVINGS</div>
+          <h3 style="font-size: 2rem;">Pro Athlete Performance</h3>
+          <div class="price-val" style="font-size: 3.5rem; color: var(--electric-lime); margin: 12px 0;">$29 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/ month</span></div>
+          <p style="margin-bottom: 24px;">Full biometric telemetry, automatic macro synchronization, HRV readiness analysis, and unlimited CSV/PDF exports.</p>
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="login.html" class="btn btn-primary btn-lg">Start 14-Day Free Trial</a>
+            <a href="analytics.html#pricing" class="btn btn-outline btn-lg">Compare All 3 Tiers &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 10: FAQ ACCORDION
+         ====================================================================== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow eyebrow-lime">Clear Answers</div>
+          <h2>Frequently Asked Questions</h2>
+          <p>Everything you need to know about biometrics, exports, and coach client access.</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How does PulseForge calculate the Daily Strain Score?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Strain is quantified on a proprietary 0–21 logarithmic scale based on cardiovascular heart rate reserve (HRR) zones, duration, and mechanical workload. A light recovery session scores under 10, while an intense threshold effort reaches 15–18+.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can my coach see my personal nutrition and sleep logs?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, through our Client Access Control architecture. You can grant your designated coach either "Edit" access (to program workouts and adjust macros) or "View-Only" access. You can revoke access at any time from your settings tab.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What formats are supported for performance exports?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>PulseForge provides one-click raw CSV exports containing all granular time-series data, certified printable PDF audit reports formatted for medical and athletic reviews, and direct print styling.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Do I need proprietary hardware or can I use existing wearables?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>PulseForge connects seamlessly with Apple Health, Garmin, Whoop, Polar, Strava, Oura, and Coros, as well as manual telemetry logging for barbell training and clinical recovery labs.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Is my biometric health data encrypted and private?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>All athlete records are stored using AES-256 bit encryption at rest and TLS 1.3 in transit. We comply with strict GDPR and sports privacy standards. We never sell or monetize user biometric health datasets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 11: FINAL CTA BAND & INSTANT INQUIRY CONTACT FORM
+         ====================================================================== -->
+    <section class="section-pad" style="background: linear-gradient(180deg, #071a1f 0%, #030c0e 100%);">
+      <div class="container">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: var(--radius-xl); padding: 60px 40px; box-shadow: 0 25px 60px rgba(0,0,0,0.7); max-width: 920px; margin: 0 auto;">
+          <div class="section-header" style="margin-bottom: 40px;">
+            <div class="eyebrow eyebrow-lime">Ready to Elevate</div>
+            <h2>Take Command of Your Performance Matrix</h2>
+            <p>Join thousands of athletes and elite coaches pushing the boundaries of physiological potential.</p>
+          </div>
+
+          <form id="contactForm" style="max-width: 680px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div class="form-group">
+                <label class="form-label" for="contactName">Your Name</label>
+                <input class="form-input" type="text" id="contactName" name="name" required placeholder="Elena Rostova">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">Your Email</label>
+                <input class="form-input" type="email" id="contactEmail" name="email" required placeholder="athlete@domain.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactRole">Athlete / Organization Type</label>
+              <select class="form-select" id="contactRole" name="role_type">
+                <option value="Pro Athlete">Competitive / Pro Athlete</option>
+                <option value="Performance Coach">Strength &amp; Conditioning Coach</option>
+                <option value="Sports Clinic">Sports Medicine / Longevity Clinic</option>
+                <option value="Gym Team">Fitness Studio / Athletic Team</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactMessage">Performance Goals or Inquiries</label>
+              <textarea class="form-textarea" id="contactMessage" name="message" required placeholder="Tell us about your training volume, roster size, or biometric requirements..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              <span>Transmit Inquiry to PulseForge Team</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER (Footer-only links: Privacy Policy, Contact)
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html">
+            <img src="assets/images/logo.png" alt="PulseForge Logo" width="180" height="45">
+          </a>
+          <p>
+            Autonomous biometric performance tracking, circadian recovery architecture, and macro fueling for elite human potential.
+          </p>
+          <div style="font-size: 0.85rem; color: var(--electric-lime); font-weight: 700;">
+            TAGLINE: "Fuel. Recover. Perform."
+          </div>
+          <div class="footer-social-links" aria-label="PulseForge Social Media">
+            <a href="https://facebook.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="PulseForge on Facebook" title="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="PulseForge on Instagram" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="PulseForge on X" title="X (Twitter)">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="PulseForge on YouTube" title="YouTube">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home Overview</a></li>
+            <li><a href="nutrition-recovery.html">Nutrition &amp; Recovery</a></li>
+            <li><a href="analytics.html">Performance Analytics</a></li>
+            <li><a href="dashboard.html">Live Dashboard App</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Client Access</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Athlete Login</a></li>
+            <li><a href="login.html">Coach Portal</a></li>
+            <li><a href="analytics.html#pricing">Clinic Enterprise</a></li>
+            <li><a href="dashboard.html">Telemetry Export</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support &amp; Trust</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="privacy-policy.html#gdpr">Biometric Data Security</a></li>
+            <li><a href="contact.html#support">Sports Lab Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 PulseForge Technologies Inc. All rights reserved. Precision Sports Science.</div>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span>&bull;</span>
+          <a href="contact.html">Contact Engineering</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" type="button" aria-label="Scroll to top" title="Scroll to top">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/tilt.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
