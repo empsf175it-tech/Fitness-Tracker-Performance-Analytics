@@ -60,11 +60,51 @@
       roleEl.textContent = (user.role || 'client').toUpperCase();
       roleEl.className = `user-role-badge role-${user.role}`;
     }
-    if (avatarEl && user.avatar) avatarEl.src = user.avatar;
-    if (topAvatarEl && user.avatar) topAvatarEl.src = user.avatar;
+
+    const fallbackAvatar = (user.role === 'coach')
+      ? 'assets/images/avatars/coach-marcus.jpg'
+      : (user.role === 'admin' ? 'assets/images/avatars/clinic-dr-kim.jpg' : 'assets/images/avatars/athlete-elena.jpg');
+
+    let resolvedAvatar = (user.avatar && typeof user.avatar === 'string') ? user.avatar : fallbackAvatar;
+    resolvedAvatar = resolvedAvatar.trim().replace(/^\/+/, '');
+    if (resolvedAvatar.startsWith('avatars/')) resolvedAvatar = 'assets/images/' + resolvedAvatar;
+    else if (resolvedAvatar.startsWith('images/avatars/')) resolvedAvatar = 'assets/' + resolvedAvatar;
+    if (!resolvedAvatar.startsWith('assets/images/avatars/')) resolvedAvatar = fallbackAvatar;
+
+    if (avatarEl) {
+      avatarEl.src = resolvedAvatar;
+      avatarEl.alt = `${user.name} Avatar`;
+      avatarEl.onerror = function() {
+        this.onerror = null;
+        this.src = fallbackAvatar;
+      };
+    }
+    if (topAvatarEl) {
+      topAvatarEl.src = resolvedAvatar;
+      topAvatarEl.alt = `${user.name} Avatar`;
+      topAvatarEl.onerror = function() {
+        this.onerror = null;
+        this.src = fallbackAvatar;
+      };
+    }
 
     if (settingsName) settingsName.value = user.name;
     if (settingsEmail) settingsEmail.value = user.email;
+
+    // Update Overview Hero Banner user info
+    const heroName = document.getElementById('heroBannerUserName');
+    const heroRole = document.getElementById('heroBannerUserRole');
+    const heroAvatar = document.getElementById('heroBannerUserAvatar');
+    if (heroName) heroName.textContent = user.name;
+    if (heroRole) heroRole.textContent = `${(user.role || 'athlete').toUpperCase()} TELEMETRY COMMAND`;
+    if (heroAvatar) {
+      heroAvatar.src = resolvedAvatar;
+      heroAvatar.alt = `${user.name} Avatar`;
+      heroAvatar.onerror = function() {
+        this.onerror = null;
+        this.src = fallbackAvatar;
+      };
+    }
 
     // Adapt clients tab label based on role
     const clientsNavItem = document.getElementById('navItemClients');
@@ -95,8 +135,10 @@
 
         // Close sidebar on mobile
         const sidebar = document.querySelector('.dash-sidebar');
+        const backdrop = document.getElementById('dashSidebarBackdrop');
         if (sidebar && window.innerWidth <= 860) {
           sidebar.classList.remove('open');
+          if (backdrop) backdrop.classList.remove('open');
         }
 
         // Trigger chart resize if needed
@@ -110,13 +152,28 @@
       });
     });
 
-    // Mobile sidebar toggle
+    // Mobile sidebar toggle & backdrop handling
     const toggleBtn = document.querySelector('.sidebar-toggle-btn');
+    const closeBtn = document.getElementById('sidebarCloseBtn');
     const sidebar = document.querySelector('.dash-sidebar');
+    const backdrop = document.getElementById('dashSidebarBackdrop');
+
+    const closeSidebarDrawer = () => {
+      if (sidebar) sidebar.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+    };
+
     if (toggleBtn && sidebar) {
       toggleBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
+        const isOpen = sidebar.classList.toggle('open');
+        if (backdrop) backdrop.classList.toggle('open', isOpen);
       });
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeSidebarDrawer);
+    }
+    if (backdrop) {
+      backdrop.addEventListener('click', closeSidebarDrawer);
     }
   }
 
@@ -230,6 +287,16 @@
       return;
     }
 
+    const workoutThumbs = {
+      'Running': 'assets/images/hero/hero-runner.jpg',
+      'Strength': 'assets/images/hero/auth-motivational.jpg',
+      'Cycling': 'assets/images/analytics/vo2-telemetry.jpg',
+      'Swimming': 'assets/images/hero/split-recovery.jpg',
+      'HIIT': 'assets/images/hero/auth-motivational.jpg',
+      'Recovery': 'assets/images/recovery/mobility-session.jpg',
+      'Cardio': 'assets/images/hero/hero-runner.jpg'
+    };
+
     tableBody.innerHTML = workouts.map((w) => {
       const categoryBadgeClass =
         w.category === 'Running' ? 'badge-running' :
@@ -238,12 +305,18 @@
         w.category === 'Swimming' ? 'badge-swimming' : 'badge-recovery';
 
       const formattedDate = w.created_at ? new Date(w.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : 'Today';
+      const thumb = workoutThumbs[w.category] || 'assets/images/hero/hero-runner.jpg';
 
       return `
         <tr>
           <td>
-            <div style="font-weight:600; color:var(--text-sand);">${escapeHtml(w.name)}</div>
-            <div style="font-size:0.75rem; color:var(--text-dim);">${escapeHtml(w.notes || 'Biometric sync logged')}</div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <img src="${thumb}" alt="${escapeHtml(w.category)}" class="workout-row-thumb" onerror="this.onerror=null; this.src='assets/images/hero/hero-runner.jpg';">
+              <div>
+                <div style="font-weight:600; color:var(--text-sand);">${escapeHtml(w.name)}</div>
+                <div style="font-size:0.75rem; color:var(--text-dim);">${escapeHtml(w.notes || 'Biometric sync logged')}</div>
+              </div>
+            </div>
           </td>
           <td><span class="badge ${categoryBadgeClass}">${escapeHtml(w.category)}</span></td>
           <td>${w.duration_mins} min</td>
@@ -297,7 +370,7 @@
 
     renderNutritionDonut(summary.totals);
 
-    const mealsList = document.getElementById('nutritionMealsList');
+    const mealsList = document.getElementById('nutritionMealsList') || document.getElementById('nutriMealsList');
     if (!mealsList) return;
 
     if (!summary.meals.length) {
@@ -305,26 +378,39 @@
       return;
     }
 
-    mealsList.innerHTML = summary.meals.map((m) => `
-      <div class="meal-log-item">
-        <div class="meal-info">
-          <div class="meal-name">${escapeHtml(m.meal_name)}</div>
-          <div class="meal-meta">
-            <span class="badge badge-aqua" style="font-size:0.7rem; padding:2px 8px;">${escapeHtml(m.meal_type)}</span>
-            <span>&bull;</span>
-            <span>P: ${m.protein_g}g</span>
-            <span>C: ${m.carbs_g}g</span>
-            <span>F: ${m.fats_g}g</span>
+    const mealThumbs = {
+      'Breakfast': 'assets/images/nutrition/recipe-oats-recovery.jpg',
+      'Lunch': 'assets/images/nutrition/recipe-salmon-bowl.jpg',
+      'Dinner': 'assets/images/nutrition/recipe-steak-fuel.jpg',
+      'Post-Workout': 'assets/images/nutrition/recipe-green-smoothie.jpg',
+      'Pre-Workout': 'assets/images/nutrition/recipe-oats-recovery.jpg',
+      'Snack': 'assets/images/nutrition/macro-plate.jpg'
+    };
+
+    mealsList.innerHTML = summary.meals.map((m) => {
+      const thumb = mealThumbs[m.meal_type] || 'assets/images/nutrition/recipe-salmon-bowl.jpg';
+      return `
+        <div class="meal-log-item">
+          <img src="${thumb}" alt="${escapeHtml(m.meal_name)}" class="meal-thumb" onerror="this.onerror=null; this.src='assets/images/nutrition/recipe-salmon-bowl.jpg';">
+          <div class="meal-info">
+            <div class="meal-name">${escapeHtml(m.meal_name)}</div>
+            <div class="meal-meta">
+              <span class="badge badge-aqua" style="font-size:0.7rem; padding:2px 8px;">${escapeHtml(m.meal_type)}</span>
+              <span>&bull;</span>
+              <span>P: ${m.protein_g}g</span>
+              <span>C: ${m.carbs_g}g</span>
+              <span>F: ${m.fats_g}g</span>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div class="meal-cals">${m.calories} kcal</div>
+            <button class="btn-action-delete" onclick="window.PulseForgeApp.deleteMeal(${m.id})" title="Remove meal" aria-label="Delete ${escapeHtml(m.meal_name)}">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            </button>
           </div>
         </div>
-        <div style="display:flex; align-items:center; gap:16px;">
-          <div class="meal-cals">${m.calories} kcal</div>
-          <button class="btn-action-delete" onclick="window.PulseForgeApp.deleteMeal(${m.id})" title="Remove meal" aria-label="Delete ${escapeHtml(m.meal_name)}">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-          </button>
-        </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   function renderNutritionDonut(totals) {
@@ -466,7 +552,7 @@
   // 8. Clients & Team Tab: RBAC Controls
   // -------------------------------------------------------------------------
   function loadClientsData() {
-    const grid = document.getElementById('clientsListGrid');
+    const grid = document.getElementById('clientsListGrid') || document.getElementById('clientsViewContainer');
     if (!grid || !store) return;
 
     const clients = store.getClients();
@@ -476,21 +562,34 @@
       return;
     }
 
+    grid.className = 'clients-list-grid';
+
+    const CLIENT_AVATARS = {
+      'Alex Vance': 'assets/images/avatars/athlete-alex.jpg',
+      'Liam Sterling': 'assets/images/avatars/athlete-liam.jpg',
+      'Maya Lin': 'assets/images/avatars/athlete-maya.jpg',
+      'Tariq Al-Mansoor': 'assets/images/avatars/athlete-tariq.jpg',
+      'Coach Marcus Vance': 'assets/images/avatars/coach-marcus.jpg'
+    };
+
     grid.innerHTML = clients.map((c) => {
       const isLead = c.role === 'coach';
       const permissionLabel =
         c.permission === 'full' ? 'Full Control' :
-        c.permission === 'edit' ? 'Read / Write' : 'View Only';
+        c.permission === 'edit' ? 'Read/Write' : 'View Only';
+
+      const avatarSrc = CLIENT_AVATARS[c.name] || c.avatar || (isLead ? 'assets/images/avatars/coach-marcus.jpg' : 'assets/images/avatars/athlete-alex.jpg');
+      const statusText = (c.name === 'Coach Marcus Vance' && (c.status === 'Coach Lead' || !c.status)) ? 'Lead Coach' : (c.status || 'Active');
 
       return `
         <div class="client-card">
           <div class="client-card-header">
-            <img src="${c.avatar || 'assets/images/avatars/athlete-elena.jpg'}" alt="${escapeHtml(c.name)}" class="client-avatar">
-            <div>
-              <div class="client-name">${escapeHtml(c.name)}</div>
-              <div class="client-email">${escapeHtml(c.email)}</div>
+            <img src="${avatarSrc}" alt="${escapeHtml(c.name)}" class="client-avatar" onerror="this.onerror=null; this.src='assets/images/avatars/athlete-alex.jpg';">
+            <div class="client-info">
+              <div class="client-name" title="${escapeHtml(c.name)}">${escapeHtml(c.name)}</div>
+              <div class="client-email" title="${escapeHtml(c.email)}">${escapeHtml(c.email)}</div>
             </div>
-            <span class="badge ${isLead ? 'badge-lime' : 'badge-aqua'}" style="margin-left:auto; font-size:0.7rem;">
+            <span class="badge ${isLead ? 'badge-lime' : 'badge-aqua'}" style="margin-left:auto; font-size:0.7rem; flex-shrink:0;">
               ${(c.role || 'athlete').toUpperCase()}
             </span>
           </div>
@@ -498,21 +597,21 @@
           <div class="client-metrics-row">
             <div>
               <span class="metric-lbl">Status</span>
-              <span class="metric-val" style="color:var(--text-sand);">${escapeHtml(c.status || 'Active')}</span>
+              <span class="metric-val" style="color:var(--text-sand); font-size:0.92rem; font-weight:700;">${escapeHtml(statusText)}</span>
             </div>
             <div>
               <span class="metric-lbl">Readiness</span>
-              <span class="metric-val" style="color:var(--electric-lime);">${c.readiness || 90}%</span>
+              <span class="metric-val" style="color:var(--electric-lime); font-size:0.92rem; font-weight:700;">${c.readiness || 90}%</span>
             </div>
             <div>
               <span class="metric-lbl">Tier</span>
-              <span class="metric-val">${c.tier || 'PRO'}</span>
+              <span class="metric-val" style="font-size:0.92rem; font-weight:700;">${c.tier || 'PRO'}</span>
             </div>
           </div>
 
           <div class="client-permission-bar">
             <span class="perm-tag ${c.permission || 'view_only'}">${permissionLabel}</span>
-            <div style="display:flex; gap:8px;">
+            <div class="client-permission-actions">
               <button class="btn btn-xs btn-outline" onclick="window.PulseForgeApp.toggleClientPermission(${c.id}, '${c.permission}')" title="Change permission level">
                 Switch Perm
               </button>

@@ -31,7 +31,11 @@
       this.options = this.config.options || {};
       this.animationProgress = 1;
 
-      this.handleResize = this.resize.bind(this);
+      this.resizeTimeout = null;
+      this.handleResize = () => {
+        if (this.resizeTimeout) cancelAnimationFrame(this.resizeTimeout);
+        this.resizeTimeout = requestAnimationFrame(() => this.resize());
+      };
       window.addEventListener('resize', this.handleResize);
 
       this.render();
@@ -39,6 +43,7 @@
 
     destroy() {
       window.removeEventListener('resize', this.handleResize);
+      if (this.resizeTimeout) cancelAnimationFrame(this.resizeTimeout);
       if (this.ctx && this.canvas) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       }
@@ -49,14 +54,19 @@
     }
 
     setupCanvas() {
-      const rect = this.canvas.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      const width = rect.width || this.canvas.parentElement.clientWidth || 400;
-      const height = rect.height || 260;
+      const parent = this.canvas.parentElement;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const width = (parent && parent.clientWidth) ? parent.clientWidth : (this.canvas.clientWidth || 400);
+      const height = (parent && parent.clientHeight) ? parent.clientHeight : (this.canvas.clientHeight || 260);
 
-      this.canvas.width = width * dpr;
-      this.canvas.height = height * dpr;
-      this.ctx.scale(dpr, dpr);
+      this.canvas.width = Math.round(width * dpr);
+      this.canvas.height = Math.round(height * dpr);
+      this.canvas.style.width = width + 'px';
+      this.canvas.style.height = height + 'px';
+      this.canvas.style.maxWidth = '100%';
+      this.canvas.style.display = 'block';
+
+      this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       return { width, height };
     }

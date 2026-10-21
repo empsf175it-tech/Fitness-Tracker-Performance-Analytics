@@ -124,25 +124,25 @@
           <p>Switch between biometric metrics and filter across multiple historical time horizons.</p>
         </div>
 
-        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 32px; max-width: 1040px; margin: 0 auto;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+        <div class="chart-playground-card">
+          <div class="chart-playground-header">
             <!-- Metric tabs -->
-            <div style="display: flex; gap: 8px;">
+            <div class="chart-metric-tabs">
               <button class="btn btn-sm btn-primary btn-metric" data-metric="strain">Training Strain</button>
               <button class="btn btn-sm btn-outline btn-metric" data-metric="hrv">HRV &amp; Recovery</button>
               <button class="btn btn-sm btn-outline btn-metric" data-metric="vo2">VO2 &amp; Power</button>
             </div>
 
             <!-- Timeframe filter pills -->
-            <div style="display: flex; gap: 6px; background: #071a1f; padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle);">
-              <button class="btn-timeframe active" data-time="7D" style="background: var(--electric-lime); color: #071a1f; border: none; padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.78rem; cursor: pointer;">7D</button>
-              <button class="btn-timeframe" data-time="30D" style="background: none; color: var(--text-muted); border: none; padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.78rem; cursor: pointer;">30D</button>
-              <button class="btn-timeframe" data-time="90D" style="background: none; color: var(--text-muted); border: none; padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.78rem; cursor: pointer;">90D</button>
-              <button class="btn-timeframe" data-time="1Y" style="background: none; color: var(--text-muted); border: none; padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.78rem; cursor: pointer;">1Y</button>
+            <div class="chart-timeframe-filter">
+              <button class="btn-timeframe active" data-time="7D" style="background: var(--electric-lime); color: #071a1f;">7D</button>
+              <button class="btn-timeframe" data-time="30D" style="background: none; color: var(--text-muted);">30D</button>
+              <button class="btn-timeframe" data-time="90D" style="background: none; color: var(--text-muted);">90D</button>
+              <button class="btn-timeframe" data-time="1Y" style="background: none; color: var(--text-muted);">1Y</button>
             </div>
           </div>
 
-          <div style="position: relative; height: 380px; width: 100%;">
+          <div class="chart-canvas-wrap">
             <canvas id="playgroundChartCanvas"></canvas>
           </div>
         </div>
@@ -234,8 +234,8 @@
           </div>
         </div>
 
-        <div style="max-width: 880px; margin: 48px auto 0; text-align: center;">
-          <img src="assets/images/analytics/vo2-telemetry.jpg" alt="Clinical VO2 Max & Metabolic Telemetry Testing in Sports Science Lab" width="600" height="450" loading="lazy" style="width: 100%; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle); box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
+        <div style="max-width: 920px; margin: 48px auto 0; display: flex; justify-content: center; align-items: center; width: 100%; box-sizing: border-box;">
+          <img src="assets/images/analytics/vo2-telemetry.jpg" alt="Clinical VO2 Max &amp; Metabolic Telemetry Testing in Sports Science Lab" width="1200" height="896" loading="lazy" style="width: 100%; height: auto; max-width: 100%; display: block; margin: 0 auto; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle); box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
         </div>
       </div>
     </section>
@@ -308,8 +308,8 @@
           <p>Witness the transformative physiological shifts achieved through systemic bio-periodization.</p>
         </div>
 
-        <div style="max-width: 780px; margin: 0 auto; text-align: center;">
-          <img src="assets/images/analytics/before-after.jpg" alt="Before vs After 12-week telemetry comparison" width="600" height="450" loading="lazy" style="width: 100%; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle); box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
+        <div style="max-width: 920px; margin: 0 auto; display: flex; justify-content: center; align-items: center; width: 100%; box-sizing: border-box;">
+          <img src="assets/images/analytics/before-after.jpg" alt="Before vs After 12-week telemetry comparison" width="1200" height="896" loading="lazy" style="width: 100%; height: auto; max-width: 100%; display: block; margin: 0 auto; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle); box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
         </div>
       </div>
     </section>
@@ -373,13 +373,13 @@
           <p>Export certified telemetry anytime. Works seamlessly with spreadsheets, sports doctors, and printers.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; max-width: 960px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 48px 36px;">
-          <div>
-            <h3 style="font-size: 1.8rem; margin-bottom: 16px;">Export Without Friction</h3>
-            <p style="margin-bottom: 24px;">
+        <div class="export-showcase-card">
+          <div class="export-showcase-content">
+            <h3>Export Without Friction</h3>
+            <p>
               PulseForge believes your health data belongs entirely to you. Download complete raw time-series CSV datasets, generate high-resolution PDF performance audits, or print clinical physical records.
             </p>
-            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <div class="export-showcase-actions">
               <a href="/api/export/csv" class="btn btn-primary" download>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download Raw CSV File
@@ -391,8 +391,8 @@
             </div>
           </div>
 
-          <div style="text-align: center;">
-            <img src="assets/images/analytics/export-preview.jpg" alt="Preview of CSV and PDF export reports" width="600" height="450" loading="lazy" style="width: 100%; border-radius: var(--radius-xl); border: 1px solid var(--border-subtle);">
+          <div class="export-showcase-visual">
+            <img src="assets/images/analytics/export-preview.jpg" alt="Preview of CSV and PDF export reports" width="600" height="450" loading="lazy">
           </div>
         </div>
       </div>
@@ -409,31 +409,31 @@
           <p>Collaborate with your coaching team without sacrificing sensitive health confidentiality.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto;">
-          <div style="background: var(--bg-card); border: 1px solid var(--electric-lime); border-radius: var(--radius-lg); padding: 32px; text-align: center;">
-            <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(198,255,61,0.15); border: 2px solid var(--electric-lime); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c6ff3d" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <div class="role-cards-grid">
+          <div class="role-card role-card-admin" data-tilt>
+            <div class="role-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </div>
-            <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Clinic Admin Role</h3>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">Full enterprise governance, staff access grants, billing management, and global audit compliance.</p>
+            <h3>Clinic Admin Role</h3>
+            <p>Full enterprise governance, staff access grants, billing management, and global audit compliance.</p>
             <span class="user-role-badge" style="background: rgba(198,255,61,0.2); color: var(--electric-lime);">GOVERNANCE TIER</span>
           </div>
 
-          <div style="background: var(--bg-card); border: 1px solid var(--recovery-aqua); border-radius: var(--radius-lg); padding: 32px; text-align: center;">
-            <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(46,242,194,0.15); border: 2px solid var(--recovery-aqua); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2ef2c2" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <div class="role-card role-card-coach" data-tilt>
+            <div class="role-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
             </div>
-            <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Coach Role</h3>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">Supervise assigned athlete rosters, program workouts, adjust diet plans, and toggle Edit vs View access.</p>
+            <h3>Coach Role</h3>
+            <p>Supervise assigned athlete rosters, program workouts, adjust diet plans, and toggle Edit vs View access.</p>
             <span class="user-role-badge" style="background: rgba(46,242,194,0.2); color: var(--recovery-aqua);">ROSTER MANAGEMENT</span>
           </div>
 
-          <div style="background: var(--bg-card); border: 1px solid var(--heat-coral); border-radius: var(--radius-lg); padding: 32px; text-align: center;">
-            <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(255,106,77,0.15); border: 2px solid var(--heat-coral); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6a4d" stroke-width="2.5"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg>
+          <div class="role-card role-card-athlete" data-tilt>
+            <div class="role-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg>
             </div>
-            <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Client / Athlete Role</h3>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">Access personal biometric dashboards, log workouts &amp; meals, review readiness, and view assigned coach guidance.</p>
+            <h3>Client / Athlete Role</h3>
+            <p>Access personal biometric dashboards, log workouts &amp; meals, review readiness, and view assigned coach guidance.</p>
             <span class="user-role-badge" style="background: rgba(255,106,77,0.2); color: var(--heat-coral);">ATHLETE PRIVACY</span>
           </div>
         </div>
@@ -539,58 +539,64 @@
           <p>Every single capability outlined with transparent clarity.</p>
         </div>
 
-        <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 32px; overflow-x: auto;">
-          <table class="dash-table" style="min-width: 640px;">
+        <div class="comparison-matrix-wrapper">
+          <table class="comparison-matrix-table">
+            <colgroup>
+              <col class="col-feature">
+              <col class="col-starter">
+              <col class="col-pro">
+              <col class="col-clinic">
+            </colgroup>
             <thead>
               <tr>
-                <th>Capability / Feature</th>
-                <th style="text-align: center;">Starter</th>
-                <th style="text-align: center; color: var(--electric-lime);">Pro Athlete</th>
-                <th style="text-align: center;">Clinic &amp; Coach</th>
+                <th class="col-feature">Capability / Feature</th>
+                <th class="col-starter">Starter</th>
+                <th class="col-pro">Pro Athlete</th>
+                <th class="col-clinic">Clinic &amp; Coach</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Workout &amp; Exercise Logging</td>
-                <td style="text-align: center;">Unlimited</td>
-                <td style="text-align: center; color: var(--electric-lime);">Unlimited</td>
-                <td style="text-align: center;">Unlimited</td>
+                <td class="col-feature">Workout &amp; Exercise Logging</td>
+                <td class="col-starter">Unlimited</td>
+                <td class="col-pro">Unlimited</td>
+                <td class="col-clinic">Unlimited</td>
               </tr>
               <tr>
-                <td>Metabolic Macro &amp; Hydration Engine</td>
-                <td style="text-align: center;">✓</td>
-                <td style="text-align: center; color: var(--electric-lime);">✓</td>
-                <td style="text-align: center;">✓</td>
+                <td class="col-feature">Metabolic Macro &amp; Hydration Engine</td>
+                <td class="col-starter">✓</td>
+                <td class="col-pro">✓</td>
+                <td class="col-clinic">✓</td>
               </tr>
               <tr>
-                <td>Circadian Sleep Staging (REM / SWS)</td>
-                <td style="text-align: center;">✓</td>
-                <td style="text-align: center; color: var(--electric-lime);">✓</td>
-                <td style="text-align: center;">✓</td>
+                <td class="col-feature">Circadian Sleep Staging (REM / SWS)</td>
+                <td class="col-starter">✓</td>
+                <td class="col-pro">✓</td>
+                <td class="col-clinic">✓</td>
               </tr>
               <tr>
-                <td>Acute &amp; Chronic Load (ATL / CTL / TSB)</td>
-                <td style="text-align: center; color: var(--text-dim);">&mdash;</td>
-                <td style="text-align: center; color: var(--electric-lime);">✓ (Included)</td>
-                <td style="text-align: center;">✓ (Included)</td>
+                <td class="col-feature">Acute &amp; Chronic Load (ATL / CTL / TSB)</td>
+                <td class="col-starter" style="color: var(--text-dim);">&mdash;</td>
+                <td class="col-pro">✓ (Included)</td>
+                <td class="col-clinic">✓ (Included)</td>
               </tr>
               <tr>
-                <td>One-Click CSV Export Download</td>
-                <td style="text-align: center;">✓</td>
-                <td style="text-align: center; color: var(--electric-lime);">✓</td>
-                <td style="text-align: center;">✓</td>
+                <td class="col-feature">One-Click CSV Export Download</td>
+                <td class="col-starter">✓</td>
+                <td class="col-pro">✓</td>
+                <td class="col-clinic">✓</td>
               </tr>
               <tr>
-                <td>Certified PDF Clinical Audit Reports</td>
-                <td style="text-align: center; color: var(--text-dim);">&mdash;</td>
-                <td style="text-align: center; color: var(--electric-lime);">✓</td>
-                <td style="text-align: center;">✓</td>
+                <td class="col-feature">Certified PDF Clinical Audit Reports</td>
+                <td class="col-starter" style="color: var(--text-dim);">&mdash;</td>
+                <td class="col-pro">✓</td>
+                <td class="col-clinic">✓</td>
               </tr>
               <tr>
-                <td>Coach &amp; Client Access Control System</td>
-                <td style="text-align: center; color: var(--text-dim);">&mdash;</td>
-                <td style="text-align: center; color: var(--electric-lime);">Single Coach Sync</td>
-                <td style="text-align: center;">Full Client Roster (Up to 50)</td>
+                <td class="col-feature">Coach &amp; Client Access Control System</td>
+                <td class="col-starter" style="color: var(--text-dim);">&mdash;</td>
+                <td class="col-pro">Single Coach Sync</td>
+                <td class="col-clinic">Full Client Roster (Up to 50)</td>
               </tr>
             </tbody>
           </table>

@@ -288,7 +288,7 @@
       permission: 'edit',
       status: 'Active',
       readiness: 94,
-      avatar: 'assets/images/avatars/athlete-elena.jpg'
+      avatar: 'assets/images/avatars/athlete-alex.jpg'
     },
     {
       id: 402,
@@ -330,7 +330,7 @@
       role: 'coach',
       tier: 'TEAM',
       permission: 'full',
-      status: 'Coach Lead',
+      status: 'Lead Coach',
       readiness: 92,
       avatar: 'assets/images/avatars/coach-marcus.jpg'
     }
@@ -380,19 +380,81 @@
         // Default logged-in athlete
         setStored(STORAGE_KEYS.SESSION, SEED_USERS[0]);
       }
+      this.sanitizeAvatars();
+    }
+
+    sanitizeAvatars() {
+      const normalize = (avatar, role) => {
+        if (!avatar || typeof avatar !== 'string') {
+          return role === 'coach' ? 'assets/images/avatars/coach-marcus.jpg' : (role === 'admin' ? 'assets/images/avatars/clinic-dr-kim.jpg' : 'assets/images/avatars/athlete-elena.jpg');
+        }
+        let clean = avatar.trim().replace(/^\/+/, '');
+        if (clean.startsWith('avatars/')) clean = 'assets/images/' + clean;
+        else if (clean.startsWith('images/avatars/')) clean = 'assets/' + clean;
+        if (!clean.startsWith('assets/images/avatars/')) {
+          clean = role === 'coach' ? 'assets/images/avatars/coach-marcus.jpg' : (role === 'admin' ? 'assets/images/avatars/clinic-dr-kim.jpg' : 'assets/images/avatars/athlete-elena.jpg');
+        }
+        return clean;
+      };
+
+      const session = getStored(STORAGE_KEYS.SESSION, null);
+      if (session) {
+        session.avatar = normalize(session.avatar, session.role);
+        setStored(STORAGE_KEYS.SESSION, session);
+      }
+
+      const users = getStored(STORAGE_KEYS.USERS, null);
+      if (Array.isArray(users)) {
+        users.forEach(u => {
+          u.avatar = normalize(u.avatar, u.role);
+        });
+        setStored(STORAGE_KEYS.USERS, users);
+      }
+
+      const CLIENT_AVATARS = {
+        'Alex Vance': 'assets/images/avatars/athlete-alex.jpg',
+        'Liam Sterling': 'assets/images/avatars/athlete-liam.jpg',
+        'Maya Lin': 'assets/images/avatars/athlete-maya.jpg',
+        'Tariq Al-Mansoor': 'assets/images/avatars/athlete-tariq.jpg',
+        'Coach Marcus Vance': 'assets/images/avatars/coach-marcus.jpg'
+      };
+
+      const clients = getStored(STORAGE_KEYS.CLIENTS, null);
+      if (Array.isArray(clients)) {
+        clients.forEach(c => {
+          if (CLIENT_AVATARS[c.name]) {
+            c.avatar = CLIENT_AVATARS[c.name];
+          } else {
+            c.avatar = normalize(c.avatar, c.role);
+          }
+          if (c.name === 'Coach Marcus Vance' && (c.status === 'Coach Lead' || !c.status)) {
+            c.status = 'Lead Coach';
+          }
+        });
+        setStored(STORAGE_KEYS.CLIENTS, clients);
+      }
     }
 
     // -----------------------------------------------------------------------
     // Auth & Session
     // -----------------------------------------------------------------------
     getCurrentUser() {
-      return getStored(STORAGE_KEYS.SESSION, SEED_USERS[0]);
+      const user = getStored(STORAGE_KEYS.SESSION, SEED_USERS[0]);
+      if (user) {
+        if (!user.avatar || !user.avatar.startsWith('assets/images/avatars/')) {
+          user.avatar = (user.role === 'coach')
+            ? 'assets/images/avatars/coach-marcus.jpg'
+            : (user.role === 'admin' ? 'assets/images/avatars/clinic-dr-kim.jpg' : 'assets/images/avatars/athlete-elena.jpg');
+        }
+      }
+      return user || SEED_USERS[0];
     }
 
     login(email, password) {
       const users = getStored(STORAGE_KEYS.USERS, SEED_USERS);
       const match = users.find(u => u.email.toLowerCase() === (email || '').toLowerCase().trim());
       if (match) {
+        if (match.role === 'coach') match.avatar = 'assets/images/avatars/coach-marcus.jpg';
         setStored(STORAGE_KEYS.SESSION, match);
         return { success: true, user: match };
       }
@@ -425,7 +487,7 @@
         email: (email || '').trim(),
         role: role,
         tier: role === 'coach' ? 'TEAM' : (role === 'admin' ? 'ENTERPRISE' : 'PRO'),
-        avatar: role === 'coach' ? 'assets/images/avatars/coach-marcus.jpg' : (role === 'admin' ? 'assets/images/avatars/athlete-elena.jpg' : 'assets/images/avatars/athlete-elena.jpg'),
+        avatar: role === 'coach' ? 'assets/images/avatars/coach-marcus.jpg' : (role === 'admin' ? 'assets/images/avatars/clinic-dr-kim.jpg' : 'assets/images/avatars/athlete-elena.jpg'),
         bio: 'PulseForge member.'
       };
       users.push(newUser);
@@ -439,6 +501,13 @@
       let match = users.find(u => u.role === role);
       if (!match) {
         match = SEED_USERS.find(u => u.role === role) || SEED_USERS[0];
+      }
+      if (role === 'coach') {
+        match.avatar = 'assets/images/avatars/coach-marcus.jpg';
+      } else if (role === 'admin') {
+        match.avatar = 'assets/images/avatars/clinic-dr-kim.jpg';
+      } else {
+        match.avatar = 'assets/images/avatars/athlete-elena.jpg';
       }
       setStored(STORAGE_KEYS.SESSION, match);
       return match;

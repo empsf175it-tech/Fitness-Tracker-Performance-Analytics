@@ -54,6 +54,7 @@
         <a href="index.html" title="Back to Home">
           <img src="assets/images/logo.png" alt="PulseForge Logo" width="160" height="40">
         </a>
+        <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation Sidebar">&times;</button>
       </div>
 
       <nav class="dash-nav">
@@ -90,10 +91,10 @@
       <!-- Sidebar User Card & Logout -->
       <div class="dash-sidebar-footer">
         <div class="user-mini-card">
-          <img src="assets/images/avatars/athlete-elena.jpg" alt="User Avatar" class="user-mini-avatar" id="userSidebarAvatar">
+          <img src="assets/images/avatars/coach-marcus.jpg" alt="Coach Marcus Vance" class="user-mini-avatar" id="userSidebarAvatar" onerror="this.onerror=null; this.src='assets/images/avatars/coach-marcus.jpg';">
           <div class="user-mini-info">
-            <span class="user-mini-name" id="userSidebarName">Elena Rostova</span>
-            <span class="user-role-badge" id="userSidebarRole">CLIENT</span>
+            <span class="user-mini-name" id="userSidebarName">Coach Marcus Vance</span>
+            <span class="user-role-badge role-coach" id="userSidebarRole">COACH</span>
           </div>
         </div>
         <button class="btn-logout-icon" id="btnLogout" title="Log Out of PulseForge">
@@ -101,6 +102,7 @@
         </button>
       </div>
     </aside>
+    <div class="dash-sidebar-backdrop" id="dashSidebarBackdrop"></div>
 
     <!-- ======================================================================
          MAIN CONTENT AREA
@@ -119,13 +121,13 @@
         </div>
 
         <div class="topbar-right">
-          <button class="btn btn-primary btn-sm" id="btnOpenAddWorkoutModal">
+          <button class="btn btn-primary btn-sm btn-topbar-action" id="btnOpenAddWorkoutModal">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Log Workout
+            <span class="btn-text-full">Log Workout</span><span class="btn-text-short">Workout</span>
           </button>
-          <button class="btn btn-secondary btn-sm" id="btnOpenAddMealModal">
+          <button class="btn btn-secondary btn-sm btn-topbar-action" id="btnOpenAddMealModal">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Log Food
+            <span class="btn-text-full">Log Food</span><span class="btn-text-short">Food</span>
           </button>
 
           <div class="btn-icon-topbar" title="Notifications">
@@ -134,7 +136,7 @@
           </div>
 
           <a href="#settings" class="dash-nav-item-link" style="text-decoration:none;">
-            <img src="assets/images/avatars/athlete-elena.jpg" alt="Avatar" id="topbarAvatar" style="width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--electric-lime); display:block;">
+            <img src="assets/images/avatars/coach-marcus.jpg" alt="Avatar" id="topbarAvatar" class="topbar-avatar" onerror="this.onerror=null; this.src='assets/images/avatars/coach-marcus.jpg';" style="width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--electric-lime); display:block; object-fit: cover;">
           </a>
         </div>
       </header>
@@ -152,6 +154,40 @@
             </div>
             <div class="pane-actions">
               <span class="badge" style="background:#0b2a30; color:var(--electric-lime); padding:6px 14px; border-radius:9999px; font-size:0.8rem; font-weight:700;">● BIO-SENSORS SYNCED</span>
+            </div>
+          </div>
+
+          <!-- Athlete Command Hero Banner with Background Image & Glassmorphic Hud -->
+          <div class="dash-hero-banner">
+            <img src="assets/images/hero/hero-runner.jpg" alt="Athletic Telemetry Banner" class="dash-hero-banner-bg" onerror="this.onerror=null; this.src='assets/images/hero/dashboard-preview.jpg';">
+            <div class="dash-hero-banner-overlay"></div>
+            <div class="dash-hero-banner-content">
+              <div class="dash-hero-banner-user">
+                <img src="assets/images/avatars/coach-marcus.jpg" alt="Active User Avatar" class="dash-hero-user-avatar" id="heroBannerUserAvatar" onerror="this.onerror=null; this.src='assets/images/avatars/coach-marcus.jpg';">
+                <div>
+                  <div class="eyebrow eyebrow-lime" id="heroBannerUserRole" style="margin-bottom:4px;">COACH TELEMETRY COMMAND</div>
+                  <h2 style="font-size:1.45rem; font-weight:800; color:var(--text-sand); margin:0;" id="heroBannerUserName">Coach Marcus Vance</h2>
+                  <p style="font-size:0.86rem; color:var(--text-muted); margin-top:3px;">
+                    Active Phase: VO2 Peak &amp; Autonomic Balance &bull; Real-time biometric sensor sync active.
+                  </p>
+                </div>
+              </div>
+              <div class="dash-hero-stats-strip">
+                <div class="dash-hero-stat-item">
+                  <span class="dash-hero-stat-lbl">VO2 Max Est.</span>
+                  <span class="dash-hero-stat-val">64.2 <small style="font-size:0.7rem; color:var(--text-sand);">mL/kg</small></span>
+                </div>
+                <div style="width:1px; height:32px; background:rgba(244,239,230,0.1);"></div>
+                <div class="dash-hero-stat-item">
+                  <span class="dash-hero-stat-lbl">HRV Baseline</span>
+                  <span class="dash-hero-stat-val" style="color:var(--recovery-aqua);">88 <small style="font-size:0.7rem; color:var(--text-sand);">ms</small></span>
+                </div>
+                <div style="width:1px; height:32px; background:rgba(244,239,230,0.1);"></div>
+                <div class="dash-hero-stat-item">
+                  <span class="dash-hero-stat-lbl">CNS State</span>
+                  <span class="dash-hero-stat-val" style="color:var(--electric-lime);">Optimal</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -222,6 +258,72 @@
               </p>
             </div>
           </div>
+
+          <!-- Telemetry Deep-Dive Spotlight Cards -->
+          <div class="dash-media-grid grid-3">
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/analytics/vo2-telemetry.jpg" alt="VO2 Max Telemetry" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/hero-runner.jpg';">
+                <span class="dash-media-card-badge">Cardiovascular Engine</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title">VO2 Max &amp; Lactate Clearing</h4>
+                <p class="dash-media-card-desc">Continuous real-time gas exchange estimation and lactate threshold boundary tracking.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">168 BPM</span>
+                    <span class="meta-stat-sub">Threshold HR</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val aqua">Zone 4 / 5</span>
+                    <span class="meta-stat-sub">Lactate Clear</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/recovery/sleep-architecture.jpg" alt="Autonomic Sleep Architecture" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/split-recovery.jpg';">
+                <span class="dash-media-card-badge">Autonomic Tone</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title">Sleep Cycles &amp; Vagal Recovery</h4>
+                <p class="dash-media-card-desc">14-day rolling root mean square of successive differences (rMSSD) paired with SWS deep sleep.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">2.1 hrs</span>
+                    <span class="meta-stat-sub">Deep SWS Sleep</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">+14%</span>
+                    <span class="meta-stat-sub">Above Baseline</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/nutrition/macro-plate.jpg" alt="Metabolic Nutrition" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/nutrition/recipe-salmon-bowl.jpg';">
+                <span class="dash-media-card-badge">Metabolic Fuel</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title">Nutrient Partitioning Today</h4>
+                <p class="dash-media-card-desc">182g protein intake supporting muscle protein synthesis, with 3,250 mL cellular hydration.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">182g / 190g</span>
+                    <span class="meta-stat-sub">Protein Intake</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">95%</span>
+                    <span class="meta-stat-sub">Macro Target</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- ------------------------------------------------------------------
@@ -238,6 +340,72 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                 + Log Workout
               </button>
+            </div>
+          </div>
+
+          <!-- Featured Training Protocols with Visual Imagery -->
+          <div class="dash-media-grid grid-3">
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/hero/hero-runner.jpg" alt="Threshold Endurance" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/dashboard-preview.jpg';">
+                <span class="dash-media-card-badge">Endurance Peak</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title">VO2 Max 800m Track Repeats</h4>
+                <p class="dash-media-card-desc">High-velocity aerobic capacity intervals. Focus on cadence stability and sub-threshold lactate clearance.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">55m &bull; 680 kcal</span>
+                    <span class="meta-stat-sub">Interval Workload</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val coral">17.8 Strain</span>
+                    <span class="meta-stat-sub">High Intensity</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/hero/auth-motivational.jpg" alt="Strength & Power" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/hero-runner.jpg';">
+                <span class="dash-media-card-badge">Neuromuscular</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title">Posterior Chain &amp; Hex-Bar Deadlift</h4>
+                <p class="dash-media-card-desc">Maximum concentric rate of force development. Working sets at 210kg with velocity telemetry tracking.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">70m &bull; 540 kcal</span>
+                    <span class="meta-stat-sub">Hypertrophy</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">16.2 Strain</span>
+                    <span class="meta-stat-sub">Power Output</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/recovery/mobility-session.jpg" alt="Dynamic Mobility" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/split-recovery.jpg';">
+                <span class="dash-media-card-badge">Active Recovery</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title">Myofascial Flush &amp; Flow</h4>
+                <p class="dash-media-card-desc">Hip decompression, thoracic spine mobility flow, and down-regulating box breathing cycles.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">35m &bull; 140 kcal</span>
+                    <span class="meta-stat-sub">Regenerative</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val aqua">5.4 Strain</span>
+                    <span class="meta-stat-sub">Active Flush</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -296,7 +464,7 @@
           </div>
 
           <!-- Macro Cards Grid -->
-          <div class="kpi-cards-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 24px;">
+          <div class="kpi-cards-grid" style="margin-bottom: 24px;">
             <div class="kpi-card">
               <div class="kpi-icon-wrap lime"><span style="font-weight:800;">CAL</span></div>
               <div class="kpi-val" id="nutriCaloriesVal" style="font-size:1.5rem;">2,140 / 2,600</div>
@@ -329,7 +497,7 @@
           </div>
 
           <!-- Meals List & Hydration Card -->
-          <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px;">
+          <div class="dash-split-2-1">
             <div class="dash-table-card">
               <h3 style="font-size:1.2rem; margin-bottom:16px;">Today's Logged Meals</h3>
               <div id="nutriMealsList">Loading nutrition entries...</div>
@@ -348,6 +516,94 @@
               </div>
             </div>
           </div>
+
+          <!-- Curated Performance Fueling Recipes & Plans -->
+          <h3 style="font-size:1.15rem; font-weight:700; margin-top:26px; margin-bottom:12px; color:var(--text-sand);">Coach-Approved Athletic Fueling Menu</h3>
+          <div class="dash-media-grid grid-4">
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/nutrition/recipe-salmon-bowl.jpg" alt="Salmon Fuel Bowl" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/nutrition/macro-plate.jpg';">
+                <span class="dash-media-card-badge">Lunch &bull; Omega-3</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title" style="font-size:0.95rem;">Wild Salmon &amp; Quinoa Bowl</h4>
+                <p class="dash-media-card-desc" style="font-size:0.8rem;">Rich in EPA/DHA fatty acids for cellular membrane fluidity and joint anti-inflammation.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">680 kcal</span>
+                    <span class="meta-stat-sub">Calories</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">58g Protein</span>
+                    <span class="meta-stat-sub">Omega-3</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/nutrition/recipe-oats-recovery.jpg" alt="Recovery Oats" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/nutrition/macro-plate.jpg';">
+                <span class="dash-media-card-badge">Breakfast &bull; Glycogen</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title" style="font-size:0.95rem;">Steel-Cut Oats &amp; Whey Isolate</h4>
+                <p class="dash-media-card-desc" style="font-size:0.8rem;">Slow-release beta-glucan complex carbohydrates paired with fast-absorbing whey isolate.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">520 kcal</span>
+                    <span class="meta-stat-sub">Calories</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">52g Protein</span>
+                    <span class="meta-stat-sub">Beta-Glucan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/nutrition/recipe-steak-fuel.jpg" alt="Steak Fuel Dinner" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/nutrition/macro-plate.jpg';">
+                <span class="dash-media-card-badge">Dinner &bull; Iron + Zinc</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title" style="font-size:0.95rem;">Grass-Fed Steak &amp; Sweet Potato</h4>
+                <p class="dash-media-card-desc" style="font-size:0.8rem;">Bioavailable heme iron and natural creatine reserves for night-time muscle fiber repair.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">920 kcal</span>
+                    <span class="meta-stat-sub">Calories</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">64g Protein</span>
+                    <span class="meta-stat-sub">Creatine</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/nutrition/recipe-green-smoothie.jpg" alt="Green Smoothie" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/nutrition/macro-plate.jpg';">
+                <span class="dash-media-card-badge">Post-Workout Flush</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title" style="font-size:0.95rem;">Green Peptide Electrolyte Shake</h4>
+                <p class="dash-media-card-desc" style="font-size:0.8rem;">Cold-pressed dark leafy greens, hydrolyzed collagen peptides, potassium, and magnesium.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">280 kcal</span>
+                    <span class="meta-stat-sub">Calories</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">22g Protein</span>
+                    <span class="meta-stat-sub">Electrolytes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- ------------------------------------------------------------------
@@ -362,7 +618,7 @@
           </div>
 
           <!-- Sleep stats -->
-          <div class="kpi-cards-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 24px;">
+          <div class="kpi-cards-grid" style="margin-bottom: 24px;">
             <div class="kpi-card">
               <div class="kpi-val" id="recovSleepScore">94%</div>
               <div class="kpi-lbl">Sleep Quality Score</div>
@@ -390,6 +646,94 @@
               <canvas id="chartHrvCanvas"></canvas>
             </div>
           </div>
+
+          <!-- Prescribed Athletic Recovery Modalities Grid -->
+          <h3 style="font-size:1.15rem; font-weight:700; margin-top:24px; margin-bottom:12px; color:var(--text-sand);">Active Neurocardiac Recovery Modalities</h3>
+          <div class="dash-media-grid grid-4">
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/recovery/sleep-architecture.jpg" alt="Sleep Architecture" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/split-recovery.jpg';">
+                <span class="dash-media-card-badge">Circadian Core</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title" style="font-size:0.95rem;">Slow-Wave Deep Sleep</h4>
+                <p class="dash-media-card-desc" style="font-size:0.8rem;">Optimal delta-wave cycles trigger systemic growth hormone secretion and neural glymphatic clearance.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">8.4 hrs</span>
+                    <span class="meta-stat-sub">Logged</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">94%</span>
+                    <span class="meta-stat-sub">Efficiency</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/recovery/cold-plunge.jpg" alt="Cold Water Immersion" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/split-recovery.jpg';">
+                <span class="dash-media-card-badge">Cryo Stimulus</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title" style="font-size:0.95rem;">Cold Water Immersion (11&deg;C)</h4>
+                <p class="dash-media-card-desc" style="font-size:0.8rem;">Rapid vasoconstriction flushes metabolic waste and suppresses post-exercise systemic inflammation.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">3&times; 4-min</span>
+                    <span class="meta-stat-sub">Cycles</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val aqua">-22%</span>
+                    <span class="meta-stat-sub">Soreness</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/recovery/infrared-sauna.jpg" alt="Infrared Sauna" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/split-recovery.jpg';">
+                <span class="dash-media-card-badge">Heat Shock</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title" style="font-size:0.95rem;">Infrared Thermal Sauna</h4>
+                <p class="dash-media-card-desc" style="font-size:0.8rem;">Stimulates HSP70 heat-shock proteins, promotes vascular endothelial elasticity, and relaxes central tone.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">25 min</span>
+                    <span class="meta-stat-sub">@ 75&deg;C Heat</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val highlight">HSP70</span>
+                    <span class="meta-stat-sub">Heat Shock</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-media-card">
+              <div class="dash-media-card-img-wrap">
+                <img src="assets/images/recovery/mobility-session.jpg" alt="Mobility & Decompression" class="dash-media-card-img" onerror="this.onerror=null; this.src='assets/images/hero/split-recovery.jpg';">
+                <span class="dash-media-card-badge">Fascial Release</span>
+              </div>
+              <div class="dash-media-card-body">
+                <h4 class="dash-media-card-title" style="font-size:0.95rem;">Spinal Decompression &amp; Flow</h4>
+                <p class="dash-media-card-desc" style="font-size:0.8rem;">Targeted joint capsule glides, hip external rotators, and diaphragmatic breathing vagal down-regulation.</p>
+                <div class="dash-media-card-meta">
+                  <div class="meta-stat-group">
+                    <span class="meta-stat-val">20 min</span>
+                    <span class="meta-stat-sub">Session</span>
+                  </div>
+                  <div class="meta-stat-group align-right">
+                    <span class="meta-stat-val aqua">Full ROM</span>
+                    <span class="meta-stat-sub">Restored</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- ------------------------------------------------------------------
@@ -403,41 +747,59 @@
             </div>
           </div>
 
-          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:24px;">
+          <div class="export-cards-grid">
             <!-- CSV Export Card -->
-            <div class="dash-table-card" style="text-align:center; padding:36px 24px;">
-              <div style="width:58px; height:58px; border-radius:50%; background:rgba(198,255,61,0.15); border:2px solid var(--electric-lime); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
+            <div class="dash-table-card export-card">
+              <div class="export-card-icon" style="background:rgba(198,255,61,0.15); border:2px solid var(--electric-lime);">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c6ff3d" stroke-width="2.5"><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
               </div>
-              <h3 style="font-size:1.3rem; margin-bottom:8px;">Export Raw CSV</h3>
-              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:24px;">Full tabular export of all dates, heart rate zones, calories, strain, and notes for Excel or Python analysis.</p>
-              <button class="btn btn-primary" id="btnExportCsv" style="width:100%;">
+              <h3 class="export-card-title">Export Raw CSV</h3>
+              <p class="export-card-desc">Full tabular export of dates, heart rate zones, calories, strain, and notes for Excel or Python analysis.</p>
+              <button class="btn btn-primary export-card-btn" id="btnExportCsv">
                 Download .CSV Telemetry
               </button>
             </div>
 
             <!-- PDF Export Card -->
-            <div class="dash-table-card" style="text-align:center; padding:36px 24px;">
-              <div style="width:58px; height:58px; border-radius:50%; background:rgba(46,242,194,0.15); border:2px solid var(--recovery-aqua); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
+            <div class="dash-table-card export-card">
+              <div class="export-card-icon" style="background:rgba(46,242,194,0.15); border:2px solid var(--recovery-aqua);">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2ef2c2" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
-              <h3 style="font-size:1.3rem; margin-bottom:8px;">Certified PDF Report</h3>
-              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:24px;">Clinical sports science report with verified telemetry summaries, formatted for doctors and head coaches.</p>
-              <button class="btn btn-secondary" id="btnExportPdf" style="width:100%;">
+              <h3 class="export-card-title">Certified PDF Report</h3>
+              <p class="export-card-desc">Clinical sports science report with verified telemetry summaries, formatted for physicians and coaches.</p>
+              <button class="btn btn-secondary export-card-btn" id="btnExportPdf">
                 Generate &amp; Open PDF
               </button>
             </div>
 
             <!-- Print Card -->
-            <div class="dash-table-card" style="text-align:center; padding:36px 24px;">
-              <div style="width:58px; height:58px; border-radius:50%; background:rgba(255,106,77,0.15); border:2px solid var(--heat-coral); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
+            <div class="dash-table-card export-card">
+              <div class="export-card-icon" style="background:rgba(255,106,77,0.15); border:2px solid var(--heat-coral);">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6a4d" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
               </div>
-              <h3 style="font-size:1.3rem; margin-bottom:8px;">Direct Printout</h3>
-              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:24px;">Sends the current telemetry snapshot directly to your printer with ink-optimized high-contrast styling.</p>
-              <button class="btn btn-outline" id="btnPrintReport" style="width:100%;">
+              <h3 class="export-card-title">Direct Printout</h3>
+              <p class="export-card-desc">Sends current telemetry snapshot directly to your printer with ink-optimized high-contrast styling.</p>
+              <button class="btn btn-outline export-card-btn" id="btnPrintReport">
                 Print Telemetry Now
               </button>
+            </div>
+          </div>
+
+          <!-- Clinical Audit Report Preview Card -->
+          <div class="dash-table-card" style="margin-top:28px; display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+            <div style="flex: 1 1 320px; max-width: 440px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-glow); box-shadow: 0 12px 30px rgba(0,0,0,0.5);">
+              <img src="assets/images/analytics/export-preview.jpg" alt="Clinical Audit Report Preview" style="width: 100%; height: auto; display: block;" onerror="this.onerror=null; this.src='assets/images/analytics/vo2-telemetry.jpg';">
+            </div>
+            <div style="flex: 1 1 320px;">
+              <div class="eyebrow eyebrow-lime" style="margin-bottom:8px;">Sports Science Validation</div>
+              <h3 style="font-size:1.35rem; font-weight:700; margin-bottom:10px;">Official Clinical Biometric Export</h3>
+              <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.6; margin-bottom:16px;">
+                Every telemetry dataset generated by PulseForge is cryptographically verified and exportable as high-density vector PDF or standard CSV. Certified for university physiological research, Olympic training logs, and clinical consultations.
+              </p>
+              <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <button class="btn btn-primary btn-sm" onclick="document.getElementById('btnExportPdf').click();">Generate Official Audit PDF</button>
+                <button class="btn btn-outline btn-sm" onclick="document.getElementById('btnExportCsv').click();">Download CSV Dataset</button>
+              </div>
             </div>
           </div>
         </section>
@@ -455,7 +817,9 @@
 
           <!-- Dynamic container for Coach Roster or Athlete Privacy Shield -->
           <div id="clientsViewContainer">
-            <div style="text-align:center; padding:40px; color:var(--text-muted);">Syncing athlete roster permissions...</div>
+            <div class="clients-list-grid" id="clientsListGrid">
+              <!-- Populated dynamically via JS with authentic athlete avatars -->
+            </div>
           </div>
         </section>
 
@@ -470,7 +834,7 @@
             </div>
           </div>
 
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+          <div class="dash-split-1-1">
             <!-- Profile Settings -->
             <div class="dash-table-card">
               <h3 style="font-size:1.2rem; margin-bottom:16px;">Athlete Bio Profile</h3>
@@ -494,24 +858,24 @@
               </p>
 
               <div style="display:flex; flex-direction:column; gap:12px;">
-                <button class="btn btn-outline" data-switch-demo="admin" style="justify-content:flex-start; text-align:left;">
-                  <span style="font-size:1.2rem; margin-right:8px;">👑</span>
+                <button class="btn btn-outline" data-switch-demo="admin" style="justify-content:flex-start; text-align:left; padding:12px 16px;">
+                  <img src="assets/images/avatars/clinic-dr-kim.jpg" alt="Dr. Julian Cross Avatar" class="demo-switcher-avatar" onerror="this.onerror=null; this.src='assets/images/avatars/athlete-elena.jpg';">
                   <div>
                     <strong>Dr. Julian Cross (Clinic Admin)</strong>
                     <div style="font-size:0.75rem; color:var(--text-muted);">admin@pulseforge.io &bull; Full governance &amp; roster controls</div>
                   </div>
                 </button>
 
-                <button class="btn btn-outline" data-switch-demo="coach" style="justify-content:flex-start; text-align:left;">
-                  <span style="font-size:1.2rem; margin-right:8px;">🏋️‍♂️</span>
+                <button class="btn btn-outline" data-switch-demo="coach" style="justify-content:flex-start; text-align:left; padding:12px 16px;">
+                  <img src="assets/images/avatars/coach-marcus.jpg" alt="Coach Marcus Vance Avatar" class="demo-switcher-avatar" onerror="this.onerror=null; this.src='assets/images/avatars/coach-marcus.jpg';">
                   <div>
                     <strong>Coach Marcus Vance (Head Coach)</strong>
                     <div style="font-size:0.75rem; color:var(--text-muted);">coach@pulseforge.io &bull; Manages athletes &amp; edits permissions</div>
                   </div>
                 </button>
 
-                <button class="btn btn-outline" data-switch-demo="client" style="justify-content:flex-start; text-align:left;">
-                  <span style="font-size:1.2rem; margin-right:8px;">🏃</span>
+                <button class="btn btn-outline" data-switch-demo="client" style="justify-content:flex-start; text-align:left; padding:12px 16px;">
+                  <img src="assets/images/avatars/athlete-elena.jpg" alt="Elena Rostova Avatar" class="demo-switcher-avatar" onerror="this.onerror=null; this.src='assets/images/avatars/athlete-elena.jpg';">
                   <div>
                     <strong>Elena Rostova (Olympic Athlete)</strong>
                     <div style="font-size:0.75rem; color:var(--text-muted);">athlete@pulseforge.io &bull; Private athlete telemetry</div>
@@ -539,7 +903,7 @@
           <label class="form-label">Workout Title</label>
           <input class="form-input" type="text" name="title" required placeholder="e.g. Threshold VO2 800m Repeats">
         </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="modal-form-row">
           <div class="form-group">
             <label class="form-label">Category</label>
             <select class="form-select" name="category" required>
@@ -555,7 +919,7 @@
             <input class="form-input" type="number" name="duration_min" required min="5" max="360" value="60">
           </div>
         </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="modal-form-row">
           <div class="form-group">
             <label class="form-label">Calories Burned</label>
             <input class="form-input" type="number" name="calories_burned" required min="50" max="4000" value="650">
@@ -602,7 +966,7 @@
             <option value="Snack">Snack</option>
           </select>
         </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="modal-form-row">
           <div class="form-group">
             <label class="form-label">Calories</label>
             <input class="form-input" type="number" name="calories" required min="10" max="3000" value="450">
@@ -612,7 +976,7 @@
             <input class="form-input" type="number" name="protein_g" min="0" max="250" value="40">
           </div>
         </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="modal-form-row">
           <div class="form-group">
             <label class="form-label">Carbs (g)</label>
             <input class="form-input" type="number" name="carbs_g" min="0" max="300" value="48">

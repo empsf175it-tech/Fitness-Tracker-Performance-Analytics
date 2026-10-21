@@ -64,8 +64,7 @@
       display: block;
     }
     .auth-card-wrapper {
-      display: flex;
-      max-width: 920px;
+      max-width: 480px;
       width: 100%;
       border-radius: var(--radius-xl);
       overflow: hidden;
@@ -75,33 +74,15 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
-    .auth-hero-banner {
-      flex: 1;
-      min-height: 520px;
-      position: relative;
-      background: url('assets/images/hero/auth-motivational.jpg') center/cover no-repeat;
-      display: block;
-    }
-    .auth-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(7,26,31,0.15) 0%, rgba(7,26,31,0.88) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 36px 28px;
-    }
     .auth-form-card {
-      flex: 1.1;
-      padding: 40px;
+      width: 100%;
+      padding: 44px 36px;
       background: transparent;
+      box-sizing: border-box;
     }
-    @media (max-width: 768px) {
-      .auth-hero-banner {
-        display: none;
-      }
-      .auth-card-wrapper {
-        max-width: 460px;
+    @media (max-width: 520px) {
+      .auth-form-card {
+        padding: 32px 20px;
       }
     }
     .auth-tabs {
@@ -175,15 +156,8 @@
       </a>
     </div>
 
-    <!-- Centered Interactive Authentication Card with Hero Visual -->
+    <!-- Centered Interactive Authentication Card -->
     <div class="auth-card-wrapper">
-      <div class="auth-hero-banner">
-        <div class="auth-hero-overlay">
-          <div style="font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; color: var(--text-sand); line-height: 1.2; margin-bottom: 8px;">FUEL. RECOVER. PERFORM.</div>
-          <p style="font-size: 0.88rem; color: var(--recovery-aqua); line-height: 1.4; margin: 0;">Join over 180,000 elite athletes and accredited coaches engineering their highest potential.</p>
-        </div>
-      </div>
-
       <div class="auth-form-card">
         <h1 style="font-size:1.45rem; font-weight:800; margin-bottom:18px; color:var(--text-sand); text-align:center;">Athlete Portal &amp; Telemetry Sign In</h1>
       <!-- Auth Tabs: Login vs Signup -->

@@ -97,10 +97,10 @@
         <p>Whether you're an Olympic athlete, collegiate coach, or longevity clinic, our sports science team is at your service.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; max-width: 1040px; margin: 0 auto; align-items: flex-start;">
+      <div class="contact-split-grid">
         <!-- Left: Contact Details & Locations -->
-        <div style="display: flex; flex-direction: column; gap: 24px;">
-          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+        <div class="contact-info-col">
+          <div class="contact-info-card">
             <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--electric-lime);">Performance Institute Labs</h3>
             <p style="font-size: 0.95rem; margin-bottom: 20px;">
               742 Bio-Kinetic Parkway, Suite 400<br>
@@ -113,7 +113,7 @@
             </div>
           </div>
 
-          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+          <div class="contact-info-card">
             <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--recovery-aqua);">Direct Engineering Response</h3>
             <p style="font-size: 0.95rem; color: var(--text-muted);">
               All technical telemetry inquiries and wearable integration API queries are reviewed directly by full-stack sports physiologists and software engineers within 24 hours.
@@ -122,10 +122,10 @@
         </div>
 
         <!-- Right: Dedicated Contact Form -->
-        <div style="background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: var(--radius-xl); padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
+        <div class="contact-form-card">
           <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Dispatch Inquiry</h3>
           <form id="contactForm">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="contact-form-row">
               <div class="form-group">
                 <label class="form-label">Full Name</label>
                 <input class="form-input" type="text" name="name" required placeholder="Elena Rostova">
@@ -158,6 +158,46 @@
           </form>
         </div>
       </div>
+
+      <!-- ======================================================================
+           INTERACTIVE CAMPUS & PERFORMANCE LAB MAP
+           ====================================================================== -->
+      <section class="contact-map-section" aria-label="Headquarters Location Map">
+        <div class="section-header" style="margin-bottom: 32px;">
+          <div class="eyebrow eyebrow-aqua">Campus Navigation</div>
+          <h2>Performance Institute &amp; Lab Location</h2>
+          <p>Visit our sports physiology testing facility and metabolic telemetry chambers in Boulder, Colorado.</p>
+        </div>
+
+        <div class="map-container-card">
+          <!-- Floating Location HUD Overlay Card -->
+          <div class="map-hud-overlay">
+            <div class="map-hud-header">
+              <div class="map-pulse-dot"></div>
+              <span>Performance Institute Labs</span>
+            </div>
+            <p>742 Bio-Kinetic Parkway, Suite 400<br>Boulder, CO 80301, United States</p>
+            <div class="map-hud-meta">
+              <span><strong>Coordinates:</strong> 40.0150° N, 105.2705° W</span>
+              <span><strong>Telemetry Lab:</strong> Mon–Fri 06:00 – 20:00 MT</span>
+              <span><strong>Biometric Access:</strong> Prior Reservation Required</span>
+            </div>
+            <a href="https://maps.google.com/?q=Boulder,+CO+80301" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="margin-top: 14px; width: 100%;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Get Directions</span>
+            </a>
+          </div>
+
+          <!-- Interactive Embedded Map -->
+          <iframe 
+            class="contact-map-iframe"
+            title="PulseForge Performance Institute Headquarters Map"
+            src="https://maps.google.com/maps?q=Boulder,+CO+80301&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
     </div>
   </main>
 
