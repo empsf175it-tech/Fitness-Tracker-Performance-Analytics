@@ -1595,6 +1595,30 @@
   justify-content: center;
   gap: 16px;
   margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 520px) {
+  .pricing-billing-switch {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 12px;
+    margin-bottom: 36px;
+  }
+
+  .pricing-billing-switch .switch-label {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .pricing-billing-switch .switch-yearly {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
 }
 
 .switch-label {
